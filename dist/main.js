@@ -1,0 +1,1 @@
+(()=>{"use strict";const e=document.getElementById("main"),n=document.createElement("div");n.innerHTML="\n        trial\n    ",e.appendChild(n)})();

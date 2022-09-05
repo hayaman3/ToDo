@@ -1,0 +1,53 @@
+:root{
+    --white:#ffffff;
+    --accent:#062335;
+    --body:#e6efec;
+    --graient:linear-gradient(#3da454 , #45a45d)
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* general tags|| */
+body{
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    all: unset;
+}
+
+/* main || */
+main{
+    flex-grow: 1;/* main tag takes available space */
+}
+
+/* footer || */
+footer{
+    width: 100%;
+    /* align-self: flex-end; */
+    display:flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    gap:3vw;
+    padding:1% 0;
+    border-top: grey solid 1px;
+    opacity: .8;
+}
+
+footer > a > img{
+    height: 20px;
+    width: 16px;
+}
