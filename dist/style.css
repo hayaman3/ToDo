@@ -1,7 +1,8 @@
 :root{
     --white:#ffffff;
-    --accent:#062335;
+    --accent:#2d495a;
     --body:#e6efec;
+    --darker:#d8e6e1;
     --graient:linear-gradient(#3da454 , #45a45d)
 }
 
@@ -18,36 +19,86 @@ body{
     min-height: 100vh;
     display:flex;
     flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    color: var(--accent);
 }
 
 ul{
     list-style-type: none;
 }
 
-a{
+/* a{
     all: unset;
+} */
+
+/* main || */
+header{
+    background-color: var(--accent);
+    color:var(--body);
+    height: 15vh;
+    display:flex;
+    align-items: center;
+    gap:1vw;
+    font-size: 2em;
+    padding-left:1em;
+    font-weight: bold;
+    letter-spacing: 5px;
 }
 
 /* main || */
+
 main{
     flex-grow: 1;/* main tag takes available space */
+    background-color: var(--body);
+    display: flex;
+}
+main > nav{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    font-weight: bold;
+    padding:20px;
+    background: var(--darker);
+    gap:.8em;
+}
+
+main > nav  button{
+    padding: 10px 10px;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 1.2em;
+    font-weight: bold;
+    background:var(--body);
+    width:100%;
+    text-align: left;
+}
+
+main > nav  button:focus{
+    background: aqua;
+}
+
+main > nav > .projects{
+    display:flex;
+    flex-direction: column;
+    gap:.8em;
 }
 
 /* footer || */
 footer{
     width: 100%;
-    /* align-self: flex-end; */
+    height:7vh;
     display:flex;
-    align-content: center;
     justify-content: center;
-    text-align: center;
+    align-items: center;
     gap:3vw;
-    padding:1% 0;
-    border-top: grey solid 1px;
-    opacity: .8;
+    border-top: rgb(224, 224, 224) solid 1px;
+    background-color: var(--body);
 }
 
 footer > a > img{
+    /* opacity: .5; */
     height: 20px;
     width: 16px;
 }

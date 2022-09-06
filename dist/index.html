@@ -8,8 +8,20 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header></header>
-    <main id="main"></main>
+    <header>
+        <i class="fa-solid fa-clipboard-check"></i>To Do
+    </header>
+    <main id="main">
+        <nav>
+            <button><i class="fa-solid fa-note-sticky"></i> Notes</button>
+            <button><i class="fa-solid fa-calendar-day"></i> Today</button>
+            <button><i class="fa-solid fa-calendar-week"></i> This Week</button>
+            <div class="projects" id="projects">
+                <h1><i class="fa-solid fa-bars-progress"></i> Projects</h1>
+                <button><i class="fa-solid fa-plus"></i> Add Projects</button>
+            </div>
+        </nav>
+    </main>
     <footer>
         <a href="https://www.theodinproject.com/lessons/node-path-javascript-todo-list">
             <img src="../src/assets/TOP.svg" alt="The Odin Project">
@@ -18,6 +30,7 @@
             <img src="../src/assets/github.svg" alt="github.com">
         </a>
     </footer>
+    <script src="https://kit.fontawesome.com/2f13a8b69a.js" crossorigin="anonymous"></script>
     <script src="main.js"></script>
 </body>
 </html>
