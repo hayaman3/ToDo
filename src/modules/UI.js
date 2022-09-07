@@ -4,8 +4,9 @@ const element = document.createElement("div")
 function UI(){
     // element.className = "";
     // element.classList.add("shop")
+    let trial = new Date();
     element.innerHTML = `
-        trial
+        ${trial}
     `;
     content.appendChild(element)
 }
