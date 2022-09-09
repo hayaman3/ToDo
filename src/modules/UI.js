@@ -1,13 +1,24 @@
-const content = document.getElementById("main")
-const element = document.createElement("div")
+import {notesContent} from './notes.js'
+
+const section = document.getElementsByTagName("section")[0];
+
+// const notes = document.getElementById("notes");
+// const today = document.getElementById("today");
+// const week = document.getElementById("week");
+// const projects = document.getElementById("rojects");
+
+// notes.addEventListener("click", showNotes)
 
 function UI(){
-    // element.className = "";
-    // element.classList.add("shop")
-    let trial = new Date();
-    element.innerHTML = `
-        ${trial}
-    `;
-    content.appendChild(element)
+    section.className = "";
+    section.classList.add("notes")
+    section.innerHTML = notesContent;
 }
-export{ UI }
+
+// function showNotes(){
+
+// }
+
+
+
+export {UI}

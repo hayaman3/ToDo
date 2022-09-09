@@ -77,7 +77,7 @@ main > nav  button{
     box-shadow: 0 1.5px 5px rgb(0 0 0 / .4);
 }
 
-main > nav  button:focus{
+.active{
     background: aqua;
 }
 
@@ -97,6 +97,7 @@ section{
     width:100%;
     display:flex;
     flex-direction: column;
+    gap:5px;
 }
 
 .notes > p{
@@ -106,6 +107,7 @@ section{
     border-radius: 5px;
     display:flex;
     flex-direction: row;
+    gap:10px;
 }
 
 .notes > p:hover{
@@ -122,9 +124,10 @@ section{
 }
 .notes > p > span {
     flex-grow: 1;
+    font-size: 15px;
 }
 
-.notes > p input[type=date]{
+.notes > p > input[type=date]{
     background: inherit;
     outline:none;
     border:none;
@@ -133,7 +136,6 @@ section{
 }
 
 .notes > button{
-    margin-top:10px;
     font-size: 15px;
     width:fit-content;
     background: var(--body);
@@ -141,8 +143,11 @@ section{
     border:none;
     cursor: pointer;
     color:var(--accent);
-    padding: 10px;
+    height:40px;
+    padding:10px;
     border-radius: 5px;
+    width: 100%;
+    text-align: left;
 }
 
 .notes > button:hover{
