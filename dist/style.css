@@ -81,6 +81,10 @@ main > nav  button{
     background: aqua;
 }
 
+.checked{
+    text-decoration: line-through;
+}
+
 main > nav > .projects{
     display:flex;
     flex-direction: column;
@@ -115,7 +119,7 @@ section{
     box-shadow: 0 1px 5px rgb(0 0 0 / .4); 
 }
 
-.notes > p > button{
+.notes button{
     border:none;
     outline: none;
     cursor: pointer;
@@ -134,6 +138,16 @@ section{
     cursor: pointer;
     color:var(--accent)
 }
+
+.notes > p > i{
+    cursor: pointer;
+}
+
+.notes > p > span{
+    cursor: pointer;
+    font-size: .9em;
+}
+
 
 .notes > button{
     font-size: 15px;
