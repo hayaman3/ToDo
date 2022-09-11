@@ -1,52 +1,72 @@
-import {notesUI} from './modules/UI'
+import {notesUI, todayUI, weekUI, projectsUI} from './modules/UI'
 
-const notes = document.getElementById("notes");
-const today = document.getElementById("today");
-const week = document.getElementById("week");
-const projects = document.getElementById("projects");
-
-const nav = [notes,today,week,projects]
+const span = document.querySelector("span");
 
 document.body.addEventListener("click", (e) => {
-    let parentElement = e.target.parentElement.tagName.toLowerCase()
+    let element = e.target
+    let parentElementTag = element.parentElement.tagName.toLowerCase()
 
-    switch(parentElement) {
+    switch(parentElementTag) {
         case "nav":
-            showTab(e)
+            showTab(element)
             break;
         case "p":
-            notesEvents(e)
+            notesEvents(element)
             break;
         default:
             console.log("alert")
       }
 });
 
+// change to more specific selector 
+span.addEventListener("focusout", (event) => {
+        console.log(event.target.innerText)
+})
+
 function showTab(e){
     toggleActive(e)
 }
 
-function notesEvents(e){
-    let element = e.target.tagName.toLowerCase();
-    switch(element){
+function toggleActive(element){
+    let siblings = element.parentElement.children;
+    for(let sib of siblings) {
+        sib.classList.remove('active-nav')
+    }
+    element.classList.add("active-nav")
+}
+
+function notesEvents(element){
+    let elementTag = element.tagName.toLowerCase();
+
+    switch(elementTag){
         case "i":
-            console.log(e.target)
-            e.target.className = "";
-            e.target.classList.add("fa-regular","fa-circle-check");
+            iTagEvents(element)
             break;
         case "span":
             break;
         default:
-            console.log("alert2")
+            console.log("switch at notesEvent index.js")
     }
 }
 
-function toggleActive(e){
-    e.target.classList.add("active")
-    nav.forEach(element => {if(e.target != element){
-        element.classList.remove("active")
-    }})
+function iTagEvents(element){
+    switch(element.className){
+        case "fa-regular fa-circle-check":
+            element.nextElementSibling.classList.remove("checked-note");
+            element.className = "";
+            element.classList.add("fa-regular","fa-circle");
+            break;
+        case "fa-regular fa-circle":
+            element.nextElementSibling.classList.add("checked-note");
+            element.className = "";
+            element.classList.add("fa-regular","fa-circle-check");
+            break;
+        case "fa-solid fa-trash-can":
+            element.parentElement.remove();
+            //remove from storage
+        default:
+            console.log("switch at iTagEvents index.js")
+    }
 }
 
 
-// UI()

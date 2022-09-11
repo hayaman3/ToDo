@@ -4,32 +4,31 @@ const section = document.getElementsByTagName("section")[0];
 
 
 function notesUI(){
+    const notes = document.getElementById("notes");
+    notes.classList.add("active-nav");
     section.className = "";
     section.classList.add("notes")
     section.innerHTML = notesContent;
-      // const p = document.createElement("p");
-    // p.classList.add("note-detail")
+}
+
+function todayUI(){
 
 }
 
+function weekUI(){
+
+}
+
+function projectsUI(){
+
+}
 
 const defaultUI = (() => {
     const notes = document.getElementById("notes");
-    notes.classList.add("active");
+    notes.classList.add("active-nav");
     section.className = "";
     section.classList.add("notes")
     section.innerHTML = notesContent;
 })();
 
-export {notesUI}
-
-// let notesContent = `
-//     <p class="note-detail">
-//         <button><i class="fa-regular fa-circle"></button></i>
-//         <span>  Details</span>
-//         <input type="date" class="date">
-//         <button class="delete-note"><i class="fa-solid fa-trash-can"></i></button>
-//     </p>
-
-//     <button id="add-note"><i class="fa-solid fa-plus"></i> Add Note</button>
-// `
+export {notesUI, todayUI, weekUI, projectsUI}
