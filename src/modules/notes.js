@@ -17,7 +17,7 @@ const contentConstructor = (priority, text) => {
     const lineContent = `
         <p class="note-line">
             <i class="fa-regular fa-circle"></i>
-            <span id="note-detail" contenteditable="true">${text}</span>
+            <span id="note-detail" contenteditable="true" data-max-length="30">${text}</span>
             <input type="date" class="date">
             <i class="fa-solid fa-trash-can"></i>
         </p>
@@ -33,11 +33,27 @@ const example2 = contentConstructor("medium", "consectetur adipiscing elit")
     
 // }
 
+const addNote = 
+    `<button id="add-note">
+        <i class="fa-solid fa-plus"></i> Add Note
+    </button>`
+
+const inputPopup = 
+    `<div id="input-note-popup" class="hide">
+        <input id="input-note" type="text"/>
+        <div id="input-buttons">
+            <button id="add-input-button">Add</button>
+            <button id="cancel-input-button">Cancel</button>
+        </div>
+    </div>`
+
 let notesContent =`
     ${example1.lineContent}
     ${example2.lineContent}
-    <button id="add-note"><i class="fa-solid fa-plus"></i> Add Note</button>
+    ${addNote}
+    ${inputPopup}
 `
+
 
 const form =`
     <form>
@@ -51,10 +67,3 @@ const form =`
 `
 
 export {notesContent}
-
-/* <p class="note-detail">
-<i class="fa-regular fa-circle-check"></i></i>
-<span style="text-decoration: line-through;">  Details</span>
-<input type="date" class="date">
-<button><i class="fa-solid fa-trash-can"></i></button>
-</p> */

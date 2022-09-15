@@ -1,11 +1,13 @@
 import {notesUI, todayUI, weekUI, projectsUI} from './modules/UI'
 
 const span = document.querySelector("span");
+const inputPopup = document.getElementById("input-note-popup")
+const addNote = document.getElementById("add-note")
 
 document.body.addEventListener("click", (e) => {
     let element = e.target
     let parentElementTag = element.parentElement.tagName.toLowerCase()
-
+    console.log(element.id)
     switch(parentElementTag) {
         case "nav":
             showTab(element)
@@ -14,8 +16,20 @@ document.body.addEventListener("click", (e) => {
             notesEvents(element)
             break;
         default:
-            console.log("alert")
-      }
+    }
+    if(element.id=="add-note"){
+        element.classList.add("hide");
+        inputPopup.className = "";
+        inputPopup.classList.add("show")
+    }
+    if(element.id=="add-input-button"){
+        console.log("save and add")
+    }
+    if(element.id=="cancel-input-button"){
+        inputPopup.className = "";
+        inputPopup.classList.add("hide")
+        addNote.className = "";
+    }
 });
 
 // change to more specific selector 
@@ -42,11 +56,16 @@ function notesEvents(element){
         case "i":
             iTagEvents(element)
             break;
-        case "span":
+        case "input":
+            changeDate(element);
             break;
         default:
             console.log("switch at notesEvent index.js")
     }
+}
+
+function changeDate(element){
+    console.log(element)
 }
 
 function iTagEvents(element){

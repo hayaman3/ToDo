@@ -73,14 +73,6 @@ main > nav  button{
     box-shadow: 0 1.5px 5px rgb(0 0 0 / .4);
 }
 
-.active-nav{
-    background: aqua;
-}
-
-.checked-note{
-    text-decoration: line-through;
-}
-
 main > nav > .projects{
     display:flex;
     flex-direction: column;
@@ -125,7 +117,14 @@ section{
 .notes > p > span {
     flex-grow: 1;
     font-size: 15px;
+    overflow: hidden;
 }
+
+.notes > p > span:focus {
+    outline-style: solid;
+    border-radius: 2px;
+    outline-color: var(--accent);
+  }
 
 .notes > p > input[type=date]{
     background: inherit;
@@ -144,7 +143,6 @@ section{
     font-size: .9em;
     text-indent: .5em;
 }
-
 
 .notes > button{
     font-size: 15px;
@@ -166,6 +164,49 @@ section{
     box-shadow: 0 1px 5px rgb(0 0 0 / .4); 
 }
 
+#input-note-popup{
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+}
+
+#input-note-popup input{
+    width:100%;
+    height:40px;
+    border-radius: 5px;
+    border:none;
+    background:var(--darker);
+    box-shadow: 0 1px 5px rgb(0 0 0 / .4);
+}
+
+#input-note-popup input:focus{
+    outline-style: solid;
+    border-radius: 2px;
+    outline-color: var(--accent);
+    text-indent: .5em;
+}
+#input-note-popup div{
+    display:flex;
+    gap:10px;
+    width:100%;
+    height:30px;
+}
+
+#input-note-popup button{
+    border-radius: 5px;
+    flex:1;
+}
+
+#add-input-button{
+    
+    background:rgb(151, 193, 151);
+}
+
+#cancel-input-button{
+    /* flex:1; */
+    background:rgb(180, 138, 138);
+}
+
 
 /* footer || */
 footer{
@@ -183,4 +224,20 @@ footer > a > img{
     /* opacity: .5; */
     height: 20px;
     width: 16px;
+}
+
+/* || events */
+.active-nav{
+    background: aqua;
+}
+
+.checked-note{
+    text-decoration: line-through;
+}
+
+.hide{
+    display: none;
+}
+.show{
+    display:flex;
 }
