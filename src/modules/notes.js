@@ -47,23 +47,11 @@ const inputPopup =
         </div>
     </div>`
 
-let notesContent =`
-    ${example1.lineContent}
+let notesContent =
+`   ${example1.lineContent}
     ${example2.lineContent}
     ${addNote}
     ${inputPopup}
-`
-
-
-const form =`
-    <form>
-        <input type="radio" id="html" name="priority" value="high">
-        <label for="high">high</label>
-        <input type="radio" id="css" name="priority" value="medium">
-        <label for="medium">medium/label>
-        <input type="radio" id="javascript" name="priority" value="low">
-        <label for="low">low</label>
-    </form>
 `
 
 export {notesContent}

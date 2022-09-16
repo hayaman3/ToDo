@@ -82,17 +82,17 @@ main > nav > .projects{
 section{
     flex-grow: 1;
     padding: 2em;
-}
-
-/* notes */
-.notes{
     width:100%;
-    display:flex;
-    flex-direction: column;
     gap:5px;
 }
 
-.notes > p{
+/* notes-section */
+.notes-section{
+    display:flex;
+    flex-direction: column; 
+}
+
+.notes-section > p{
     width:100%;
     height:40px;
     padding:10px;
@@ -102,31 +102,31 @@ section{
     gap:10px;
 }
 
-.notes > p:hover{
+.notes-section > p:hover{
     background: var(--darker);
     box-shadow: 0 1px 5px rgb(0 0 0 / .4); 
 }
 
-.notes button{
+.notes-section button{
     border:none;
     outline: none;
     cursor: pointer;
     background: inherit;
     color:inherit;
 }
-.notes > p > span {
+.notes-section > p > span {
     flex-grow: 1;
     font-size: 15px;
     overflow: hidden;
 }
 
-.notes > p > span:focus {
+.notes-section > p > span:focus {
     outline-style: solid;
     border-radius: 2px;
     outline-color: var(--accent);
   }
 
-.notes > p > input[type=date]{
+.notes-section > p > input[type=date]{
     background: inherit;
     outline:none;
     border:none;
@@ -134,17 +134,17 @@ section{
     color:var(--accent)
 }
 
-.notes > p > i{
+.notes-section > p > i{
     cursor: pointer;
 }
 
-.notes > p > span{
+.notes-section > p > span{
     cursor: pointer;
     font-size: .9em;
     text-indent: .5em;
 }
 
-.notes > button{
+.notes-section > button{
     font-size: 15px;
     width:fit-content;
     background: var(--body);
@@ -159,7 +159,7 @@ section{
     text-align: left;
 }
 
-.notes > button:hover{
+.notes-section > button:hover{
     background: var(--darker);
     box-shadow: 0 1px 5px rgb(0 0 0 / .4); 
 }
@@ -203,10 +203,24 @@ section{
 }
 
 #cancel-input-button{
-    /* flex:1; */
     background:rgb(180, 138, 138);
 }
 
+/* today || */
+
+.today-section{
+    display:flex;
+    flex-direction: column;
+    
+}
+
+/* week || */
+
+.week-section{
+    display:flex;
+    flex-direction: column;
+    
+}
 
 /* footer || */
 footer{

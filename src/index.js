@@ -11,6 +11,7 @@ document.body.addEventListener("click", (e) => {
     switch(parentElementTag) {
         case "nav":
             showTab(element)
+            toggleActiveSection(element)
             break;
         case "p":
             notesEvents(element)
@@ -38,16 +39,38 @@ span.addEventListener("focusout", (event) => {
 })
 
 function showTab(e){
-    toggleActive(e)
+    toggleActiveNav(e)
 }
 
-function toggleActive(element){
+function toggleActiveNav(element){
     let siblings = element.parentElement.children;
     for(let sib of siblings) {
         sib.classList.remove('active-nav')
     }
     element.classList.add("active-nav")
 }
+
+function toggleActiveSection(element){
+    console.log(element)
+    switch(element.id){
+        case "notes-nav":
+            notesUI()
+            break
+        case "today-nav":
+            todayUI()
+            break
+        case "week-nav":
+            weekUI()
+            break
+        case "projects-nav":
+            projectsUI()
+            break
+        default:
+            console.log("switch at toggleActiveSection")
+    }
+}
+
+
 
 function notesEvents(element){
     let elementTag = element.tagName.toLowerCase();
