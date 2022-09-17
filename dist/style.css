@@ -14,7 +14,7 @@
   margin: 0;
 }
 
-/* general tags|| */
+/* element tags || */
 body{
     min-height: 100vh;
     display:flex;
@@ -23,11 +23,12 @@ body{
     color: var(--accent);
 }
 
-ul{
-    list-style-type: none;
+main{
+    flex-grow: 1;/* main tag takes available space */
+    background-color: var(--body);
+    display: flex;
 }
 
-/* main || */
 header{
     background-color: var(--accent);
     color:var(--body);
@@ -41,14 +42,13 @@ header{
     letter-spacing: 5px;
 }
 
-/* main || */
-
-main{
-    flex-grow: 1;/* main tag takes available space */
-    background-color: var(--body);
-    display: flex;
+ul{
+    list-style-type: none;
 }
-main > nav{
+
+/* nav || */
+
+nav{
     display: flex;
     flex-direction: column;
     width: 250px;
@@ -58,25 +58,53 @@ main > nav{
     gap:.8em;
 }
 
-main > nav  button{
-    padding: 10px 10px;
-    border:none;
-    outline: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: var(--accent);
-    font-size: 1.2em;
-    font-weight: bold;
-    background:var(--body);
-    width:100%;
-    text-align: left;
-    box-shadow: 0 1.5px 5px rgb(0 0 0 / .4);
-}
-
-main > nav > .projects{
-    display:flex;
+nav > div{
+    display: flex;
     flex-direction: column;
     gap:.8em;
+}
+
+.basic-notes-nav{
+
+    
+}
+
+nav button{
+    width:100%;
+    font-size: 1.1em;
+    padding: 8px 8px;
+    border-radius: 5px;
+    border:none;
+    outline: none;
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+    color: var(--accent);
+    background:var(--body);
+    box-shadow: 0 1.5px 5px rgb(0 0 0 / .4);
+}
+.note-nav-button button{
+
+}
+
+.projects-nav{
+
+    
+}
+
+.projects-nav button{
+
+}
+
+#add-project{
+    padding: 5px 5px;
+    font-size:.7em;
+    background: inherit;
+    box-shadow:none;
+}
+#add-project:hover{
+    box-shadow: 0 1.5px 5px rgb(0 0 0 / .4);
+    background:var(--body);
 }
 
 section{
@@ -124,6 +152,7 @@ section{
     outline-style: solid;
     border-radius: 2px;
     outline-color: var(--accent);
+    background: white;
   }
 
 .notes-section > p > input[type=date]{
@@ -174,17 +203,13 @@ section{
     width:100%;
     height:40px;
     border-radius: 5px;
-    border:none;
-    background:var(--darker);
+    border:1.5px solid var(--accent);
+    background:white;
     box-shadow: 0 1px 5px rgb(0 0 0 / .4);
-}
-
-#input-note-popup input:focus{
-    outline-style: solid;
-    border-radius: 2px;
-    outline-color: var(--accent);
+    outline-style:none;
     text-indent: .5em;
 }
+
 #input-note-popup div{
     display:flex;
     gap:10px;
@@ -198,12 +223,11 @@ section{
 }
 
 #add-input-button{
-    
-    background:rgb(151, 193, 151);
+    background:#56C596;
 }
 
 #cancel-input-button{
-    background:rgb(180, 138, 138);
+    background:#c55656;
 }
 
 /* today || */

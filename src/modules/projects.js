@@ -15,10 +15,15 @@ const inputPopup =
     </div>
 </div>`
 
-let projectsContent =`
+let projectsSectionContent =`
     ${head}
-    ${addProjectButton}
+    
     ${inputPopup}
 `
 
-export {projectsContent}
+let projectsNav =
+`
+${addProjectButton}
+`
+
+export {projectsSectionContent,projectsNav}

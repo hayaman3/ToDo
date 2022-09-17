@@ -6,13 +6,29 @@ const addNote = document.getElementById("add-note")
 
 document.body.addEventListener("click", (e) => {
     let element = e.target
+    let classList = element.classList
     let parentElementTag = element.parentElement.tagName.toLowerCase()
-    console.log(element.id)
-    switch(parentElementTag) {
-        case "nav":
+
+    // if(element.classList.contains("nav-note-button")){
+    //     showTab(element)
+    //     toggleActiveSection(element)
+    // }
+
+    switch(true){
+        
+        case classList.contains("note-nav-button"):
             showTab(element)
             toggleActiveSection(element)
-            break;
+    }
+
+
+    if(element.id=="add-project"){
+        const but = document.createElement("button")
+        but.innerText = "This";
+        const projdiv = document.getElementsByClassName("projects-nav")[0]
+        projdiv.appendChild(but);
+    }
+    switch(parentElementTag){
         case "p":
             notesEvents(element)
             break;
@@ -20,6 +36,7 @@ document.body.addEventListener("click", (e) => {
     }
     if(element.id=="add-note"){
         element.classList.add("hide");
+        // className to classList
         inputPopup.className = "";
         inputPopup.classList.add("show")
     }
@@ -32,6 +49,7 @@ document.body.addEventListener("click", (e) => {
         addNote.className = "";
     }
 });
+
 
 // change to more specific selector 
 span.addEventListener("focusout", (event) => {
