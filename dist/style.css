@@ -6,6 +6,10 @@
     --graient:linear-gradient(#3da454 , #45a45d)
 }
 
+*{
+    color: var(--accent);
+}
+
 *,
 *::after,
 *::before {
@@ -20,7 +24,6 @@ body{
     display:flex;
     flex-direction: column;
     font-family: 'Roboto', sans-serif;
-    color: var(--accent);
 }
 
 main{
@@ -47,7 +50,6 @@ ul{
 }
 
 /* nav || */
-
 nav{
     display: flex;
     flex-direction: column;
@@ -79,7 +81,6 @@ nav button{
     font-weight: bold;
     text-align: left;
     cursor: pointer;
-    color: var(--accent);
     background:var(--body);
     box-shadow: 0 1.5px 5px rgb(0 0 0 / .4);
 }
@@ -140,7 +141,6 @@ section{
     outline: none;
     cursor: pointer;
     background: inherit;
-    color:inherit;
 }
 .notes-section > p > span {
     flex-grow: 1;
@@ -160,7 +160,6 @@ section{
     outline:none;
     border:none;
     cursor: pointer;
-    color:var(--accent)
 }
 
 .notes-section > p > i{
@@ -180,7 +179,6 @@ section{
     outline:none;
     border:none;
     cursor: pointer;
-    color:var(--accent);
     height:40px;
     padding:10px;
     border-radius: 5px;
@@ -222,16 +220,15 @@ section{
     flex:1;
 }
 
-#add-input-button{
+#save-note-button{
     background:#56C596;
 }
 
-#cancel-input-button{
+#cancel-note-button{
     background:#c55656;
 }
 
 /* today || */
-
 .today-section{
     display:flex;
     flex-direction: column;
@@ -239,11 +236,9 @@ section{
 }
 
 /* week || */
-
 .week-section{
     display:flex;
     flex-direction: column;
-    
 }
 
 /* footer || */
@@ -259,7 +254,6 @@ footer{
 }
 
 footer > a > img{
-    /* opacity: .5; */
     height: 20px;
     width: 16px;
 }

@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <i class="fa-solid fa-clipboard-check"></i>To Do
+        <i class="fa-solid fa-clipboard-check" style="color:#e6efec"></i>To Do
     </header>
     <main id="main">
         <nav>
@@ -20,22 +20,20 @@
                 <button type="button" id="week-nav" class="note-nav-button"><i class="fa-solid fa-calendar-week"></i> This Week</button>
             </div>   
             <br>
-
             <div class="projects-nav">
-            <h2><i class="fa-solid fa-folder"></i> Projects</h2>
-            <!-- <button type="button" id="projects-nav"> Projects</h1></button> -->
-
-            
+                <h2><i class="fa-regular fa-folder-open"></i> Projects</h2>
                 <button id="add-project"><i class="fa-solid fa-plus"></i> Add Project</button>
+                <div id="add-project-popup" >
+                    <!-- class="hide" -->
+                    <input id="input-project" type="text"/>
+                    <div id="new-project-buttons">
+                        <button id="save-project-button">Save</button>
+                        <button id="cancel-project-button">Cancel</button>
+                    </div>
+                </div>
             </div>
         </nav>
-
-        
-        <section>
-
-        </section>
-     
-
+        <section></section>
     </main>
     <footer>
         <a href="https://www.theodinproject.com/lessons/node-path-javascript-todo-list">

@@ -30,8 +30,6 @@ function projectsUI(){
     section.innerHTML = projectsContent;
 }
 
-
-
 const defaultUI = (() => {
     const notes = document.getElementById("notes-nav");
     notes.classList.add("active-nav");

@@ -1,54 +1,101 @@
 import {notesUI, todayUI, weekUI, projectsUI} from './modules/UI'
 
+
+//refractor
 const span = document.querySelector("span");
 const inputPopup = document.getElementById("input-note-popup")
 const addNote = document.getElementById("add-note")
 
-document.body.addEventListener("click", (e) => {
+
+const nav = document.querySelector("nav")
+const section = document.querySelector("section")
+
+nav.children[0].addEventListener("click", (e) => {
+    showTab(e.target)
+    toggleActiveSection(e.target)
+})
+
+nav.children[2].addEventListener("click", (e) => {
     let element = e.target
-    let classList = element.classList
-    let parentElementTag = element.parentElement.tagName.toLowerCase()
-
-    // if(element.classList.contains("nav-note-button")){
-    //     showTab(element)
-    //     toggleActiveSection(element)
-    // }
-
-    switch(true){
-        
-        case classList.contains("note-nav-button"):
-            showTab(element)
-            toggleActiveSection(element)
-    }
-
-
     if(element.id=="add-project"){
         const but = document.createElement("button")
         but.innerText = "This";
         const projdiv = document.getElementsByClassName("projects-nav")[0]
         projdiv.appendChild(but);
     }
-    switch(parentElementTag){
-        case "p":
-            notesEvents(element)
-            break;
-        default:
-    }
-    if(element.id=="add-note"){
-        element.classList.add("hide");
-        // className to classList
-        inputPopup.className = "";
-        inputPopup.classList.add("show")
-    }
-    if(element.id=="add-input-button"){
-        console.log("save and add")
-    }
-    if(element.id=="cancel-input-button"){
-        inputPopup.className = "";
-        inputPopup.classList.add("hide")
-        addNote.className = "";
-    }
-});
+    console.log(element.innerText)
+})
+// nav.addEventListener("click", (e) => {
+//     let element = e.target;
+//     let classList = element.classList;
+//     let first = element.firstElementChild
+//     console.log(element.firstElementChild)
+//     console.log(element.children[0])
+//     // switch (key) {
+//     //     case value:
+            
+//     //         break;
+    
+//     //     default:
+//     //         break;
+//     // }
+//     // change 
+//     if(classList.contains("note-nav-button")){
+//         showTab(element)
+//         toggleActiveSection(element)
+//     }
+
+
+//     if(element.id=="add-project"){
+//         //pop input prompt
+
+//     }
+
+// })
+
+section.addEventListener("click", (e) => {
+    let element = e.target;
+    // let classList = element.classList;
+
+
+    notesEvents(element)
+
+})
+
+// document.body.addEventListener("click", (e) => {
+//     let element = e.target
+//     let classList = element.classList
+//     let parentElementTag = element.parentElement.tagName.toLowerCase()
+
+
+
+//     if(element.id=="add-project"){
+//         const but = document.createElement("button")
+//         but.innerText = "This";
+//         const projdiv = document.getElementsByClassName("projects-nav")[0]
+//         projdiv.appendChild(but);
+//     }
+//     switch(parentElementTag){
+//         case "p":
+//             notesEvents(element)
+//             break;
+//         default:
+//     }
+//     if(element.id=="add-note"){
+//         element.classList.add("hide");
+//         // className to classList
+//         inputPopup.className = "";
+//         inputPopup.classList.add("show")
+//     }
+//     if(element.id=="add-input-button"){
+//         console.log("save and add")
+//     }
+//     if(element.id=="cancel-input-button"){
+//         inputPopup.className = "";
+//         inputPopup.classList.add("hide")
+//         addNote.className = "";
+//     }
+// });
 
 
 // change to more specific selector 
@@ -89,13 +136,15 @@ function toggleActiveSection(element){
 }
 
 
-
 function notesEvents(element){
     let elementTag = element.tagName.toLowerCase();
-
+    console.log(element)
     switch(elementTag){
         case "i":
             iTagEvents(element)
+            break;
+        case "input":
+            changeDate(element);
             break;
         case "input":
             changeDate(element);
