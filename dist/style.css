@@ -45,6 +45,12 @@ header{
     letter-spacing: 5px;
 }
 
+button{
+    border:none;
+    outline: none;
+    cursor: pointer;
+}
+
 ul{
     list-style-type: none;
 }
@@ -55,7 +61,7 @@ nav{
     flex-direction: column;
     width: 250px;
     font-weight: bold;
-    padding:20px;
+    padding:1em;
     background: var(--darker);
     gap:.8em;
 }
@@ -66,24 +72,21 @@ nav > div{
     gap:.8em;
 }
 
-.basic-notes-nav{
-
-    
-}
-
 nav button{
     width:100%;
+    box-shadow: 0 1.5px 5px rgb(0 0 0 / .4);
+}
+
+.basic-notes-nav button{
     font-size: 1.1em;
     padding: 8px 8px;
     border-radius: 5px;
-    border:none;
-    outline: none;
     font-weight: bold;
     text-align: left;
-    cursor: pointer;
     background:var(--body);
-    box-shadow: 0 1.5px 5px rgb(0 0 0 / .4);
 }
+
+
 .note-nav-button button{
 
 }
@@ -102,7 +105,11 @@ nav button{
     font-size:.7em;
     background: inherit;
     box-shadow:none;
+    border-radius: 3px;
+    font-weight: bold;
+    text-align: left;
 }
+
 #add-project:hover{
     box-shadow: 0 1.5px 5px rgb(0 0 0 / .4);
     background:var(--body);
@@ -136,49 +143,40 @@ section{
     box-shadow: 0 1px 5px rgb(0 0 0 / .4); 
 }
 
-.notes-section button{
-    border:none;
-    outline: none;
-    cursor: pointer;
-    background: inherit;
-}
-.notes-section > p > span {
+
+
+.notes-section span{
     flex-grow: 1;
     font-size: 15px;
     overflow: hidden;
-}
-
-.notes-section > p > span:focus {
-    outline-style: solid;
-    border-radius: 2px;
-    outline-color: var(--accent);
-    background: white;
-  }
-
-.notes-section > p > input[type=date]{
-    background: inherit;
-    outline:none;
-    border:none;
-    cursor: pointer;
-}
-
-.notes-section > p > i{
-    cursor: pointer;
-}
-
-.notes-section > p > span{
     cursor: pointer;
     font-size: .9em;
     text-indent: .5em;
 }
 
+.notes-section span:focus{
+    outline-style: solid;
+    border-radius: 2px;
+    outline-color: var(--accent);
+    background: white;
+}
+
+.notes-section input[type=date]{
+    background: inherit;
+    outline:none;
+    border:none;
+    cursor: pointer;
+}
+
+.notes-section i{
+    cursor: pointer;
+}
+
+
 .notes-section > button{
     font-size: 15px;
     width:fit-content;
     background: var(--body);
-    outline:none;
-    border:none;
-    cursor: pointer;
     height:40px;
     padding:10px;
     border-radius: 5px;
@@ -191,21 +189,51 @@ section{
     box-shadow: 0 1px 5px rgb(0 0 0 / .4); 
 }
 
-#input-note-popup{
-    flex-direction: column;
-    align-items: center;
-    gap:10px;
+/* popup || */
+#add-project-popup{
+    gap:7px;
 }
 
-#input-note-popup input{
+#input-project{
+    height:30px;
+    border-radius: 3px;
+    text-indent: .3em;
+}
+#add-project-popup div{
+    display:flex;
+    gap:5px;
     width:100%;
-    height:40px;
-    border-radius: 5px;
+    height:20px;
+    font-size: .5em;
+}
+
+#add-project-popup button{
+    font-size:1em;
+    border-radius: 3px;
+}
+
+.input-popup{
+    display:flex;/* temporary */
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-text{
+    width:100%;
     border:1.5px solid var(--accent);
     background:white;
     box-shadow: 0 1px 5px rgb(0 0 0 / .4);
     outline-style:none;
+}
+
+#input-note{
+    height:40px;
+    border-radius: 5px;
     text-indent: .5em;
+}
+
+#input-note-popup{
+    gap:10px;
 }
 
 #input-note-popup div{
@@ -220,11 +248,10 @@ section{
     flex:1;
 }
 
-#save-note-button{
+.green-button{
     background:#56C596;
 }
-
-#cancel-note-button{
+.red-button{
     background:#c55656;
 }
 
@@ -232,7 +259,6 @@ section{
 .today-section{
     display:flex;
     flex-direction: column;
-    
 }
 
 /* week || */
@@ -258,7 +284,7 @@ footer > a > img{
     width: 16px;
 }
 
-/* || events */
+/*events || */
 .active-nav{
     background: aqua;
 }

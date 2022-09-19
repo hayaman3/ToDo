@@ -39,11 +39,12 @@ const addNote =
     </button>`
 
 const inputPopup = 
-    `<div id="input-note-popup" class="hide">
-        <input id="input-note" type="text"/>
+// class="hide"
+    `<div id="input-note-popup" class="input-popup">
+        <input id="input-note" class="input-text" type="text"/>
         <div id="input-buttons">
-            <button id="save-input-button">Save</button>
-            <button id="cancel-input-button">Cancel</button>
+            <button id="save-input-button" class="green-button">Save</button>
+            <button id="cancel-input-button" class="red-button">Cancel</button>
         </div>
     </div>`
 

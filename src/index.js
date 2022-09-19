@@ -10,21 +10,47 @@ const addNote = document.getElementById("add-note")
 const nav = document.querySelector("nav")
 const section = document.querySelector("section")
 
-nav.children[0].addEventListener("click", (e) => {
-    showTab(e.target)
-    toggleActiveSection(e.target)
+const notesNav = document.getElementById("notes-nav")
+const todayNav = document.getElementById("today-nav")
+const weekNav = document.getElementById("week-nav")
+
+notesNav.addEventListener("click", (e) => {
+    toggleActiveNav(e.target);
+    notesUI();
 })
 
-nav.children[2].addEventListener("click", (e) => {
-    let element = e.target
-    if(element.id=="add-project"){
-        const but = document.createElement("button")
-        but.innerText = "This";
-        const projdiv = document.getElementsByClassName("projects-nav")[0]
-        projdiv.appendChild(but);
-    }
-    console.log(element.innerText)
+todayNav.addEventListener("click", (e) => {
+    toggleActiveNav(e.target);
+    todayUI();
 })
+
+weekNav.addEventListener("click", (e) => {
+    toggleActiveNav(e.target);
+    weekUI();
+})
+
+
+// const nav2 = document.querySelector(".basic-notes-nav")
+// nav2.addEventListener("click", (e) => {
+//         // showTab(e.target)
+//         // toggleActiveSection(e.target)
+//         console.log(e.target)
+//     })
+// nav.children[0].addEventListener("click", (e) => {
+//     showTab(e.target)
+//     toggleActiveSection(e.target)
+// })
+
+// nav.children[2].addEventListener("click", (e) => {
+//     let element = e.target
+//     if(element.id=="add-project"){
+//         const but = document.createElement("button")
+//         but.innerText = "This";
+//         const projdiv = document.getElementsByClassName("projects-nav")[0]
+//         projdiv.appendChild(but);
+//     }
+//     console.log(element.innerText)
+// })
 // nav.addEventListener("click", (e) => {
 //     let element = e.target;
 //     let classList = element.classList;
@@ -103,9 +129,6 @@ span.addEventListener("focusout", (event) => {
         console.log(event.target.innerText)
 })
 
-function showTab(e){
-    toggleActiveNav(e)
-}
 
 function toggleActiveNav(element){
     let siblings = element.parentElement.children;
@@ -115,25 +138,6 @@ function toggleActiveNav(element){
     element.classList.add("active-nav")
 }
 
-function toggleActiveSection(element){
-    console.log(element)
-    switch(element.id){
-        case "notes-nav":
-            notesUI()
-            break
-        case "today-nav":
-            todayUI()
-            break
-        case "week-nav":
-            weekUI()
-            break
-        case "projects-nav":
-            projectsUI()
-            break
-        default:
-            console.log("switch at toggleActiveSection")
-    }
-}
 
 
 function notesEvents(element){
