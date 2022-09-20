@@ -3,24 +3,21 @@ const contentConstructor = (priority, text) => {
         switch(priority) {
             case "high":
                 return "red"
-                break;
             case "medium":
                 return "yellow"
-                break;
             case "low":
                 return "green"
-                break;
             default:
                 return "grey"
           }
     }
     const lineContent = `
-        <p class="note-line">
+        <div class="note-line">
             <i class="fa-regular fa-circle"></i>
-            <span id="note-detail" contenteditable="true" data-max-length="30">${text}</span>
+            <input type="text" class="edit-text" value="${text}">
             <input type="date" class="date">
             <i class="fa-solid fa-trash-can"></i>
-        </p>
+        </div>
     `
     return { lineContent, getPriorityColor};
 };

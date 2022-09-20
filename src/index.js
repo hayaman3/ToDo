@@ -6,9 +6,7 @@ const span = document.querySelector("span");
 const inputPopup = document.getElementById("input-note-popup")
 const addNote = document.getElementById("add-note")
 
-
-const nav = document.querySelector("nav")
-const section = document.querySelector("section")
+const noteSection = document.querySelector("section.notes-section")
 
 const notesNav = document.getElementById("notes-nav")
 const todayNav = document.getElementById("today-nav")
@@ -29,114 +27,24 @@ weekNav.addEventListener("click", (e) => {
     weekUI();
 })
 
-
-// const nav2 = document.querySelector(".basic-notes-nav")
-// nav2.addEventListener("click", (e) => {
-//         // showTab(e.target)
-//         // toggleActiveSection(e.target)
-//         console.log(e.target)
-//     })
-// nav.children[0].addEventListener("click", (e) => {
-//     showTab(e.target)
-//     toggleActiveSection(e.target)
-// })
-
-// nav.children[2].addEventListener("click", (e) => {
-//     let element = e.target
-//     if(element.id=="add-project"){
-//         const but = document.createElement("button")
-//         but.innerText = "This";
-//         const projdiv = document.getElementsByClassName("projects-nav")[0]
-//         projdiv.appendChild(but);
-//     }
-//     console.log(element.innerText)
-// })
-// nav.addEventListener("click", (e) => {
-//     let element = e.target;
-//     let classList = element.classList;
-//     let first = element.firstElementChild
-//     console.log(element.firstElementChild)
-//     console.log(element.children[0])
-//     // switch (key) {
-//     //     case value:
-            
-//     //         break;
-    
-//     //     default:
-//     //         break;
-//     // }
-//     // change 
-//     if(classList.contains("note-nav-button")){
-//         showTab(element)
-//         toggleActiveSection(element)
-//     }
-
-
-//     if(element.id=="add-project"){
-//         //pop input prompt
-
-//     }
-
-// })
-
-section.addEventListener("click", (e) => {
-    let element = e.target;
-    // let classList = element.classList;
-
-
-    notesEvents(element)
-
+noteSection.addEventListener("click", (event) => {
+    let element = event.target;
+    let elementTag = element.tagName.toLowerCase()
+    console.log(elementTag)
+    // switch(elementTag){
+    //     case "i":
+    //         iTagEvents(element)
+    //         break;
+    //     case "button":
+    //     default:
+    // }
 })
 
-// document.body.addEventListener("click", (e) => {
-//     let element = e.target
-//     let classList = element.classList
-//     let parentElementTag = element.parentElement.tagName.toLowerCase()
+noteSection.addEventListener("input", (event) => {
+    let element = event.target
 
-
-
-//     if(element.id=="add-project"){
-//         const but = document.createElement("button")
-//         but.innerText = "This";
-//         const projdiv = document.getElementsByClassName("projects-nav")[0]
-//         projdiv.appendChild(but);
-//     }
-//     switch(parentElementTag){
-//         case "p":
-//             notesEvents(element)
-//             break;
-//         default:
-//     }
-//     if(element.id=="add-note"){
-//         element.classList.add("hide");
-//         // className to classList
-//         inputPopup.className = "";
-//         inputPopup.classList.add("show")
-//     }
-//     if(element.id=="add-input-button"){
-//         console.log("save and add")
-//     }
-//     if(element.id=="cancel-input-button"){
-//         inputPopup.className = "";
-//         inputPopup.classList.add("hide")
-//         addNote.className = "";
-//     }
-// });
-
-
-// change to more specific selector 
-span.addEventListener("focusout", (event) => {
-        console.log(event.target.innerText)
+    console.log(element.value)
 })
-
-
-function toggleActiveNav(element){
-    let siblings = element.parentElement.children;
-    for(let sib of siblings) {
-        sib.classList.remove('active-nav')
-    }
-    element.classList.add("active-nav")
-}
 
 
 
@@ -157,6 +65,57 @@ function notesEvents(element){
             console.log("switch at notesEvent index.js")
     }
 }
+
+
+//     if(element.id=="add-project"){
+//         //pop input prompt
+
+//     }
+
+// })
+
+
+
+// document.body.addEventListener("click", (e) => {
+//     let element = e.target
+//     let classList = element.classList
+//     
+
+
+
+//     if(element.id=="add-project"){
+//         const but = document.createElement("button")
+//         but.innerText = "This";
+//         const projdiv = document.getElementsByClassName("projects-nav")[0]
+//         projdiv.appendChild(but);
+//     }
+
+//     if(element.id=="add-note"){
+//         element.classList.add("hide");
+//         // className to classList
+//         inputPopup.className = "";
+//         inputPopup.classList.add("flex")
+//     }
+//     if(element.id=="add-input-button"){
+//         console.log("save and add")
+//     }
+//     if(element.id=="cancel-input-button"){
+//         inputPopup.className = "";
+//         inputPopup.classList.add("hide")
+//         addNote.className = "";
+//     }
+// });
+
+
+
+function toggleActiveNav(element){
+    let siblings = element.parentElement.children;
+    for(let sib of siblings) {
+        sib.classList.remove('active-nav')
+    }
+    element.classList.add("active-nav")
+}
+
 
 function changeDate(element){
     console.log(element)
