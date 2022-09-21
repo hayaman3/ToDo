@@ -1,112 +1,82 @@
 import {notesUI, todayUI, weekUI, projectsUI} from './modules/UI'
 
-
-//refractor
-const span = document.querySelector("span");
-const inputPopup = document.getElementById("input-note-popup")
-const addNote = document.getElementById("add-note")
-
+const basicNotesNav = document.querySelector(".basic-notes-nav")
+const projectsNav = document.querySelector(".projects-nav")
 const noteSection = document.querySelector("section.notes-section")
 
-const notesNav = document.getElementById("notes-nav")
-const todayNav = document.getElementById("today-nav")
-const weekNav = document.getElementById("week-nav")
 
-notesNav.addEventListener("click", (e) => {
-    toggleActiveNav(e.target);
-    notesUI();
+basicNotesNav.addEventListener("click", (event) =>{
+    toggleActiveNav(event.target);
+    switch (event.target.id) {
+        case "notes-nav":
+            notesUI();
+            break;
+        case "today-nav":
+            todayUI();
+            break;
+        case "week-nav":
+            weekUI();
+            break;
+        default:
+            break;
+    }
 })
 
-todayNav.addEventListener("click", (e) => {
-    toggleActiveNav(e.target);
-    todayUI();
+projectsNav.addEventListener("click", (event) =>{
+    let element = event.target
+    let ancestorClass = ".projects-nav"
+    addButton(element,ancestorClass)    
 })
 
-weekNav.addEventListener("click", (e) => {
-    toggleActiveNav(e.target);
-    weekUI();
-})
+
 
 noteSection.addEventListener("click", (event) => {
     let element = event.target;
     let elementTag = element.tagName.toLowerCase()
-    console.log(elementTag)
-    // switch(elementTag){
-    //     case "i":
-    //         iTagEvents(element)
-    //         break;
-    //     case "button":
-    //     default:
-    // }
-})
-
-noteSection.addEventListener("input", (event) => {
-    let element = event.target
-
-    console.log(element.value)
-})
-
-
-
-function notesEvents(element){
-    let elementTag = element.tagName.toLowerCase();
-    console.log(element)
     switch(elementTag){
         case "i":
             iTagEvents(element)
             break;
-        case "input":
-            changeDate(element);
-            break;
-        case "input":
-            changeDate(element);
+        case "button":
+            let ancestorClass = ".notes-section"
+            addButton(element,ancestorClass)   
             break;
         default:
-            console.log("switch at notesEvent index.js")
+    }
+})
+
+function addButton(element,ancestorClass){
+    const showPopup = document.querySelector(`${ancestorClass} .show`)
+    const popup = document.querySelector(`${ancestorClass} .popup`)
+    const textInput = document.querySelector(`${ancestorClass} .input`)
+    const saveInput = document.querySelector(`${ancestorClass} .save`)
+    const cancelInput = document.querySelector(`${ancestorClass} .cancel`)
+   
+    switch (element.id) {
+        case showPopup.id:
+            showPopup.classList.toggle("hide")
+            popup.classList.toggle("hide")
+            break;
+        case saveInput.id:
+            showPopup.classList.toggle("hide")
+            popup.classList.toggle("hide")
+            console.log(textInput.value)
+            break;
+        case cancelInput.id:
+            showPopup.classList.toggle("hide")
+            popup.classList.toggle("hide")
+            break;
+        default:
+            break;
     }
 }
 
-
-//     if(element.id=="add-project"){
-//         //pop input prompt
-
-//     }
-
-// })
-
-
-
-// document.body.addEventListener("click", (e) => {
-//     let element = e.target
-//     let classList = element.classList
-//     
-
-
-
-//     if(element.id=="add-project"){
-//         const but = document.createElement("button")
-//         but.innerText = "This";
-//         const projdiv = document.getElementsByClassName("projects-nav")[0]
-//         projdiv.appendChild(but);
-//     }
-
-//     if(element.id=="add-note"){
-//         element.classList.add("hide");
-//         // className to classList
-//         inputPopup.className = "";
-//         inputPopup.classList.add("flex")
-//     }
-//     if(element.id=="add-input-button"){
-//         console.log("save and add")
-//     }
-//     if(element.id=="cancel-input-button"){
-//         inputPopup.className = "";
-//         inputPopup.classList.add("hide")
-//         addNote.className = "";
-//     }
-// });
-
-
+noteSection.addEventListener("input", (event) => {
+    let element = event.target
+    if(element.classList.contains("input-text"))return
+    
+    console.log(element.value)
+})
 
 function toggleActiveNav(element){
     let siblings = element.parentElement.children;
@@ -114,11 +84,6 @@ function toggleActiveNav(element){
         sib.classList.remove('active-nav')
     }
     element.classList.add("active-nav")
-}
-
-
-function changeDate(element){
-    console.log(element)
 }
 
 function iTagEvents(element){

@@ -7,7 +7,7 @@ const addProjectButton =
     </button>`
 
 const inputPopup = 
-`<div >
+`<div>
     <input type="text"/>
     <div>
         <button>Add</button>

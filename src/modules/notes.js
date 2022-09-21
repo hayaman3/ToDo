@@ -31,17 +31,16 @@ const example2 = contentConstructor("medium", "consectetur adipiscing elit")
 // }
 
 const addNote = 
-    `<button id="add-note">
+    `<button id="add-note" class="show">
         <i class="fa-solid fa-plus"></i> Add Note
     </button>`
 
 const inputPopup = 
-// class="hide"
-    `<div id="input-note-popup" class="input-popup">
-        <input id="input-note" class="input-text" type="text"/>
+    `<div id="input-note-popup" class="input-popup hide popup">
+        <input id="input-note" class="input-text input" type="text"/>
         <div id="input-buttons">
-            <button id="save-input-button" class="green-button">Save</button>
-            <button id="cancel-input-button" class="red-button">Cancel</button>
+            <button id="save-input-button" class="green-button save">Save</button>
+            <button id="cancel-input-button" class="red-button cancel">Cancel</button>
         </div>
     </div>`
 

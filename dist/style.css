@@ -175,7 +175,6 @@ section{
     border-radius:3px;
     border:1px solid var(--accent);
     box-shadow: 0 1px 5px rgb(0 0 0 / .4);
-
 }
 
 .notes-section input[type=date]{
@@ -308,13 +307,13 @@ footer > a > img{
 .checked-note{
     text-decoration: line-through;
 }
-
-.hide{
-    display: none;
-}
 .flex{
     display:flex;
 }
+.hide{
+    display: none;
+}
+
 .block{
     display:block
 }
