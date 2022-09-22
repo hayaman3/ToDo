@@ -3,25 +3,40 @@ import {todayContent} from './today.js'
 import {weekContent} from './week.js'
 import {projectsContent} from './projects.js'
 
-const section = document.getElementsByTagName("section")[0];
+const section = document.querySelector("main > section");
 
+const basicNotesNav = document.querySelector(".basic-notes-nav")
 
-function notesUI(){
+basicNotesNav.addEventListener("click", (event) =>{
+    toggleActiveNav(event.target);
+    switch (event.target.id) {
+        case "notes-nav":
+            changeSection("notes-section",notesContent)
+            break;
+        case "today-nav":
+            changeSection("today-section",todayContent)
+            break;
+        case "week-nav":
+            changeSection("today-section",weekContent)
+            break;
+        default:
+            break;
+    }
+    
+})
+
+function changeSection(sectionClass,sectionContent){
     section.className = "";
-    section.classList.add("notes-section")
-    section.innerHTML = notesContent;
+    section.classList.add(sectionClass)
+    section.innerHTML = sectionContent;
 }
 
-function todayUI(){
-    section.className = "";
-    section.classList.add("today-section")
-    section.innerHTML = todayContent;
-}
-
-function weekUI(){
-    section.className = "";
-    section.classList.add("today-section")
-    section.innerHTML = weekContent;
+function toggleActiveNav(element){
+    let siblings = element.parentElement.children;
+    for(let sib of siblings) {
+        sib.classList.remove('active-nav')
+    }
+    element.classList.add("active-nav")
 }
 
 function projectsUI(){
@@ -38,4 +53,5 @@ const defaultUI = (() => {
     section.innerHTML = notesContent;
 })();
 
-export {notesUI, todayUI, weekUI, projectsUI}
+// export {notesUI, todayUI, weekUI, projectsUI,changeSection}
+// export {changeSection}

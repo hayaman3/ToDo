@@ -1,34 +1,16 @@
-import {notesUI, todayUI, weekUI, projectsUI} from './modules/UI'
+import {notesUI, todayUI, weekUI, projectsUI,changeSection} from './modules/UI'
 
-const basicNotesNav = document.querySelector(".basic-notes-nav")
 const projectsNav = document.querySelector(".projects-nav")
 const noteSection = document.querySelector("section.notes-section")
 
 
-basicNotesNav.addEventListener("click", (event) =>{
-    toggleActiveNav(event.target);
-    switch (event.target.id) {
-        case "notes-nav":
-            notesUI();
-            break;
-        case "today-nav":
-            todayUI();
-            break;
-        case "week-nav":
-            weekUI();
-            break;
-        default:
-            break;
-    }
-})
+
 
 projectsNav.addEventListener("click", (event) =>{
     let element = event.target
     let ancestorClass = ".projects-nav"
     addButton(element,ancestorClass)    
 })
-
-
 
 noteSection.addEventListener("click", (event) => {
     let element = event.target;
@@ -45,6 +27,20 @@ noteSection.addEventListener("click", (event) => {
     }
 })
 
+noteSection.addEventListener("change", (event) => {
+    let element = event.target
+    if(element.classList.contains("input-text"))return
+    if(element.classList.contains("edit-text")){
+         // 
+    console.log(element.value+" edit")
+    }
+    if(element.classList.contains("date")){
+        // 
+    console.log(element.value+" date")
+    }
+  
+})
+
 function addButton(element,ancestorClass){
     const showPopup = document.querySelector(`${ancestorClass} .show`)
     const popup = document.querySelector(`${ancestorClass} .popup`)
@@ -52,7 +48,7 @@ function addButton(element,ancestorClass){
     const saveInput = document.querySelector(`${ancestorClass} .save`)
     const cancelInput = document.querySelector(`${ancestorClass} .cancel`)
    
-    switch (element.id) {
+    switch (element.id){
         case showPopup.id:
             showPopup.classList.toggle("hide")
             popup.classList.toggle("hide")
@@ -60,6 +56,7 @@ function addButton(element,ancestorClass){
         case saveInput.id:
             showPopup.classList.toggle("hide")
             popup.classList.toggle("hide")
+            // 
             console.log(textInput.value)
             break;
         case cancelInput.id:
@@ -71,12 +68,7 @@ function addButton(element,ancestorClass){
     }
 }
 
-noteSection.addEventListener("input", (event) => {
-    let element = event.target
-    if(element.classList.contains("input-text"))return
-    
-    console.log(element.value)
-})
+
 
 function toggleActiveNav(element){
     let siblings = element.parentElement.children;
@@ -105,5 +97,3 @@ function iTagEvents(element){
             console.log("switch at iTagEvents index.js")
     }
 }
-
-

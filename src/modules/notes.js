@@ -1,3 +1,5 @@
+import {imNew} from '../index.js'
+
 const contentConstructor = (priority, text) => {
     const getPriorityColor = (priority) => {
         switch(priority) {
@@ -44,11 +46,14 @@ const inputPopup =
         </div>
     </div>`
 
+
+
 let notesContent =
 `   ${example1.lineContent}
     ${example2.lineContent}
     ${addNote}
     ${inputPopup}
 `
+
 
 export {notesContent}
