@@ -45,13 +45,7 @@ function projectsUI(){
     section.innerHTML = projectsContent;
 }
 
-const defaultUI = (() => {
-    const notes = document.getElementById("notes-nav");
-    notes.classList.add("active-nav");
-    section.className = "";
-    section.classList.add("notes-section")
-    section.innerHTML = notesContent;
-})();
+
 
 // export {notesUI, todayUI, weekUI, projectsUI,changeSection}
 // export {changeSection}
