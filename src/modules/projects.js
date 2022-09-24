@@ -1,11 +1,6 @@
 const head = 
 `<h1>Projects</h1>`
 
-const addProjectButton = 
-    `<button id="add-project">
-        <i class="fa-solid fa-plus"></i> Add Project
-    </button>`
-
 const inputPopup = 
 `<div>
     <input type="text"/>
@@ -17,13 +12,10 @@ const inputPopup =
 
 let projectsSectionContent =`
     ${head}
-    
+
     ${inputPopup}
 `
 
-let projectsNav =
-`
-${addProjectButton}
-`
 
-export {projectsSectionContent,projectsNav}
+
+export {projectsSectionContent}
