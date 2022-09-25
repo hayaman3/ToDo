@@ -116,7 +116,7 @@ function showInputForm(element,ancestorClass){
         case saveInput.id:
             showPopup.classList.toggle("hide")
             popup.classList.toggle("hide")
-            addToLocal(textInput.value)
+            addNoteLocalStorage(textInput.value)
             break;
         case cancelInput.id:
             showPopup.classList.toggle("hide")
@@ -126,8 +126,37 @@ function showInputForm(element,ancestorClass){
             break;
     }
 }
-function addToLocal(inputValue){
-    let index = document.querySelector(".notes-section").childElementCount-1
-    localStorage.setItem(index,inputValue)
+let localStorageObj={}
+
+const initLocalStorageObj = (() => {
+    if (localStorage.length > 0){
+        localStorageObj.notes = JSON.parse(localStorage.getItem("notes"))
+        localStorageObj.projects = JSON.parse(localStorage.getItem("projects"))
+        console.log(localStorageObj)
+    }else{
+        localStorageObj = {
+            "notes":[
+            ["work","wt"],
+            ["2d","ar"]
+            ],
+            "projects":[],
+        }
+        localStorage.setItem("notes",JSON.stringify(localStorageObj.notes))
+        // console.log(localStorageObj.notes)
+    }
+})();
+
+function addNoteLocalStorage(text){
+    console.log(localStorageObj.notes)
+    // localStorage.setItem()
+    
+}
+
+
+function addNoteToLocal(inputValue){
+    // let index = document.querySelector(".notes-section").childElementCount-1
+    console.log(localStorageObj)
+
+    // localStorage.setItem(index,inputValue)
 }
 export {notesSectionContent as notesContent}
