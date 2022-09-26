@@ -10,12 +10,12 @@ const contentConstructor = (text) => {
     return {lineContent};
 };
 
-const example1 = contentConstructor("Lorem ipsum dolor sit amet");
-const example2 = contentConstructor("consectetur adipiscing elit")
+// const example1 = contentConstructor("Lorem ipsum dolor sit amet");
+// const example2 = contentConstructor("consectetur adipiscing elit")
 
 // loop through saved data
 // function notesContent(){
-    
+    // let noteContent = localStorage.key()
 // }
 
 const addNoteButton = 
@@ -32,7 +32,7 @@ const inputPopup =
         </div>
     </div>`
 
-// let noteContent = localStorage.key()
+
 
 let notesSectionContent =
 `   
@@ -40,8 +40,12 @@ let notesSectionContent =
     ${addNoteButton}
     ${inputPopup}
 `
-const section = document.querySelector("main > section");
-const defaultUI = (() => {
+
+
+
+
+(function(){
+    const section = document.querySelector("main > section");
     const notes = document.getElementById("notes-nav");
     notes.classList.add("active-nav");
     section.className = "";
@@ -126,6 +130,7 @@ function showInputForm(element,ancestorClass){
             break;
     }
 }
+
 let localStorageObj={}
 
 const initLocalStorageObj = (() => {
@@ -133,6 +138,7 @@ const initLocalStorageObj = (() => {
         localStorageObj.notes = JSON.parse(localStorage.getItem("notes"))
         localStorageObj.projects = JSON.parse(localStorage.getItem("projects"))
         console.log(localStorageObj)
+        console.log("ip")
     }else{
         localStorageObj = {
             "notes":[
@@ -142,7 +148,9 @@ const initLocalStorageObj = (() => {
             "projects":[],
         }
         localStorage.setItem("notes",JSON.stringify(localStorageObj.notes))
-        // console.log(localStorageObj.notes)
+        localStorage.setItem("projects",JSON.stringify(localStorageObj.projects))
+        console.log(localStorageObj)
+        console.log("else")
     }
 })();
 
@@ -152,6 +160,42 @@ function addNoteLocalStorage(text){
     
 }
 
+// function mapLocalStorageObj(getSpecificContent){
+//     if(getSpecificContent=="notes"){
+
+//     }
+// }
+
+
+function mapLocalStorageObj(){
+    let noteLine =``;
+    localStorageObj.notes.forEach(arr => 
+    noteLine = noteLine+
+    `
+        <div class="note-line">
+            <i class="fa-regular fa-circle"></i>
+            <input type="text" class="edit-text" value="${arr[0]}">
+            <input type="date" class="date">
+            <i class="fa-solid fa-trash-can"></i>
+        </div>
+    `
+    )
+    return noteLine
+}
+// mapLocalStorageObj()
+
+function notesSectionContentpank(){
+    let noteContent = 
+    `
+        ${mapLocalStorageObj()}
+        ${addNoteButton}
+        ${inputPopup}
+    `
+
+    console.log(noteContent) 
+}
+// notesSectionContentpank()
+
 
 function addNoteToLocal(inputValue){
     // let index = document.querySelector(".notes-section").childElementCount-1
@@ -159,4 +203,4 @@ function addNoteToLocal(inputValue){
 
     // localStorage.setItem(index,inputValue)
 }
-export {notesSectionContent as notesContent}
+export {notesSectionContent}

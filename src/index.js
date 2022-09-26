@@ -1,6 +1,10 @@
+import './assets/style.css'
+import './assets/fonts-6/css/all.css'
+
+
 // import {notesUI, todayUI, weekUI, projectsUI,} from './modules/UI'
 
-import {notesContent} from './modules/notes.js'
+import {notesSectionContent} from './modules/notes.js'
 import {todayContent} from './modules/today.js'
 import {weekContent} from './modules/week.js'
 import {projectsContent} from './modules/projects.js'
