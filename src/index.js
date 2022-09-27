@@ -1,6 +1,7 @@
 import './assets/style.css'
 import './assets/fonts-6/css/all.css'
-
+import github from "./assets/github.svg"
+import TOP from "./assets/TOP.svg"
 
 // import {notesUI, todayUI, weekUI, projectsUI,} from './modules/UI'
 
@@ -17,7 +18,7 @@ basicNotesNav.addEventListener("click", (event) =>{
     toggleActiveNav(event.target);
     switch (event.target.id) {
         case "notes-nav":
-            changeSection("notes-section",notesContent)
+            changeSection("notes-section",notesSectionContent)
             break;
         case "today-nav":
             changeSection("today-section",todayContent)

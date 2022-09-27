@@ -34,15 +34,10 @@ const inputPopup =
 
 
 
-let notesSectionContent =
-`   
-    ${""}
-    ${addNoteButton}
+const notesSectionContent =
+`   ${addNoteButton}
     ${inputPopup}
 `
-
-
-
 
 (function(){
     const section = document.querySelector("main > section");
