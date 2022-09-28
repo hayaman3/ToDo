@@ -18,7 +18,7 @@ basicNotesNav.addEventListener("click", (event) =>{
     toggleActiveNav(event.target);
     switch (event.target.id) {
         case "notes-nav":
-            changeSection("notes-section",notesSectionContent)
+            changeSection("notes-section",notesSectionContent())
             break;
         case "today-nav":
             changeSection("today-section",todayContent)

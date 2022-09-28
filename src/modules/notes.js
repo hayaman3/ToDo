@@ -1,22 +1,72 @@
-const contentConstructor = (text) => {
-    const lineContent = `
-        <div class="note-line">
-            <i class="fa-regular fa-circle"></i>
-            <input type="text" class="edit-text" value="${text}">
-            <input type="date" class="date">
-            <i class="fa-solid fa-trash-can"></i>
-        </div>
-    `
-    return {lineContent};
-};
+let localStorageObj={}
 
-// const example1 = contentConstructor("Lorem ipsum dolor sit amet");
-// const example2 = contentConstructor("consectetur adipiscing elit")
+const initLocalStorageObj = (() => {
+    if (localStorage.length > 0){
+        localStorageObj.notes = JSON.parse(localStorage.getItem("notes"))
+        localStorageObj.projects = JSON.parse(localStorage.getItem("projects"))
+        // console.log(localStorageObj)
+        // console.log("ip")
+    }else{
+        localStorageObj = {
+            "notes":[
+            ["work","wt"],
+            ["2d","ar"]
+            ],
+            "projects":[],
+        }
+        localStorage.setItem("notes",JSON.stringify(localStorageObj.notes))
+        localStorage.setItem("projects",JSON.stringify(localStorageObj.projects))
+        // console.log(localStorageObj)
+        // console.log("else")
+    }
+})();
 
-// loop through saved data
-// function notesContent(){
-    // let noteContent = localStorage.key()
-// }
+const noteInnerHtml = (() => {
+    const addNoteButton = 
+        `
+            <button id="add-note" class="show">
+                <i class="fa-solid fa-plus"></i> Add Note
+            </button>
+        `
+    const inputPopup = 
+        `
+            <div id="input-note-popup" class="input-popup hide popup">
+                <input id="input-note" class="input-text input" type="text"/>
+                <div id="input-buttons">
+                    <button id="save-input-button" class="green-button save">Save</button>
+                    <button id="cancel-input-button" class="red-button cancel">Cancel</button>
+                </div>
+            </div>
+        `
+    const mapLocalStorageNotes = () => {
+        let noteLine =``;
+        let localStorageNotes = JSON.parse(localStorage.getItem("notes"))
+        localStorageNotes.forEach(arr => 
+            noteLine = noteLine+
+            `
+                <div class="note-line">
+                    <i class="fa-regular fa-circle"></i>
+                    <input type="text" class="edit-text" value="${arr[0]}">
+                    <input type="date" class="date">
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            `
+        )
+        return noteLine
+    };
+    const notesSectionContent = () =>{
+        let noteContent = 
+            `
+                ${mapLocalStorageNotes()}
+                ${addNoteButton}
+                ${inputPopup}
+            `
+        return noteContent
+    }  
+    return {
+        notesSectionContent
+    };
+  })();
 
 const addNoteButton = 
     `<button id="add-note" class="show">
@@ -32,21 +82,64 @@ const inputPopup =
         </div>
     </div>`
 
-
-
-const notesSectionContent =
-`   ${addNoteButton}
-    ${inputPopup}
-`
-
+const section = document.querySelector("main > section");
 (function(){
-    const section = document.querySelector("main > section");
     const notes = document.getElementById("notes-nav");
     notes.classList.add("active-nav");
     section.className = "";
     section.classList.add("notes-section")
-    section.innerHTML = notesSectionContent;
+    section.innerHTML = noteInnerHtml.notesSectionContent();
 })();
+
+function addNoteLocalStorage(text){
+    console.log(localStorageObj.notes)
+    // localStorage.setItem()
+    
+}
+
+// function mapLocalStorageObj(getSpecificContent){
+//     if(getSpecificContent=="notes"){
+
+//     }
+// }
+
+
+function mapLocalStorageNotes(asddddd){
+    let noteLine =``;
+    let localStorageNotes = JSON.parse(localStorage.getItem("notes"))
+    localStorageNotes.forEach(arr => 
+        noteLine = noteLine+
+        `
+            <div class="note-line">
+                <i class="fa-regular fa-circle"></i>
+                <input type="text" class="edit-text" value="${arr[0]}">
+                <input type="date" class="date">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+        `
+    )
+    return noteLine
+}
+// mapLocalStorageNotes()
+
+function notesSectionContent(){
+    let noteContent = 
+        `
+            ${mapLocalStorageNotes()}
+            ${addNoteButton}
+            ${inputPopup}
+        `
+    return noteContent
+}
+
+
+
+function addNoteToLocal(inputValue){
+    // let index = document.querySelector(".notes-section").childElementCount-1
+    console.log(localStorageObj)
+
+    // localStorage.setItem(index,inputValue)
+}
 
 const noteSection = document.querySelector("section.notes-section")
 
@@ -126,76 +219,9 @@ function showInputForm(element,ancestorClass){
     }
 }
 
-let localStorageObj={}
-
-const initLocalStorageObj = (() => {
-    if (localStorage.length > 0){
-        localStorageObj.notes = JSON.parse(localStorage.getItem("notes"))
-        localStorageObj.projects = JSON.parse(localStorage.getItem("projects"))
-        console.log(localStorageObj)
-        console.log("ip")
-    }else{
-        localStorageObj = {
-            "notes":[
-            ["work","wt"],
-            ["2d","ar"]
-            ],
-            "projects":[],
-        }
-        localStorage.setItem("notes",JSON.stringify(localStorageObj.notes))
-        localStorage.setItem("projects",JSON.stringify(localStorageObj.projects))
-        console.log(localStorageObj)
-        console.log("else")
-    }
-})();
-
-function addNoteLocalStorage(text){
-    console.log(localStorageObj.notes)
-    // localStorage.setItem()
-    
-}
-
-// function mapLocalStorageObj(getSpecificContent){
-//     if(getSpecificContent=="notes"){
-
-//     }
-// }
 
 
-function mapLocalStorageObj(){
-    let noteLine =``;
-    localStorageObj.notes.forEach(arr => 
-    noteLine = noteLine+
-    `
-        <div class="note-line">
-            <i class="fa-regular fa-circle"></i>
-            <input type="text" class="edit-text" value="${arr[0]}">
-            <input type="date" class="date">
-            <i class="fa-solid fa-trash-can"></i>
-        </div>
-    `
-    )
-    return noteLine
-}
-// mapLocalStorageObj()
-
-function notesSectionContentpank(){
-    let noteContent = 
-    `
-        ${mapLocalStorageObj()}
-        ${addNoteButton}
-        ${inputPopup}
-    `
-
-    console.log(noteContent) 
-}
-// notesSectionContentpank()
 
 
-function addNoteToLocal(inputValue){
-    // let index = document.querySelector(".notes-section").childElementCount-1
-    console.log(localStorageObj)
 
-    // localStorage.setItem(index,inputValue)
-}
 export {notesSectionContent}
