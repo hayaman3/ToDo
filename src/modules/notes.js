@@ -38,25 +38,29 @@ const note = (() => {
     `
 
   const loopLocalStorageNotes = () => {
-    let noteLine = ``;
-    let localStorageNotes = JSON.parse(localStorage.getItem("notes"));
-    console.log(localStorageNotes.length)
-    localStorageNotes.forEach((arr) =>{
-      ++counter
-      // console.log(counter)
-      // console.log(arr)
-      let lineTemplate =
-        `
-          <div class="note-line" id=${idGenerator()}>
-              <i class="fa-regular fa-circle"></i>
-              <input type="text" class="edit-text" value="${arr[0]}">
-              <input type="date" class="date">
-              <i class="fa-solid fa-trash-can"></i>
-          </div>
-        `
-        noteLine = noteLine + lineTemplate
-    });
-    return noteLine;
+    if(localStorage>0){
+      let noteLine = ``;
+      let localStorageNotes = JSON.parse(localStorage.getItem("notes"));
+      console.log(localStorageNotes.length)
+      localStorageNotes.forEach((arr) =>{
+        ++counter
+        // console.log(counter)
+        // console.log(arr)
+        let lineTemplate =
+          `
+            <div class="note-line" id=${idGenerator()}>
+                <i class="fa-regular fa-circle"></i>
+                <input type="text" class="edit-text" value="${arr[0]}">
+                <input type="date" class="date">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+          `
+          noteLine = noteLine + lineTemplate
+      });
+      return noteLine;
+    }else{
+      return ""
+    }
   };
   const idGenerator = () => {
     let date = new Date();
@@ -85,12 +89,7 @@ const note = (() => {
 //     section.innerHTML = note.htmlContent();
 // })();
 
-function addNoteToLocal(inputValue) {
-  // let index = document.querySelector(".notes-section").childElementCount-1
-  console.log(localStorageObj);
 
-  // localStorage.setItem(index,inputValue)
-}
 
 const noteSection = document.querySelector("section.notes-section");
 
@@ -135,7 +134,7 @@ function iTagEvents(element) {
       element.classList.add("fa-regular", "fa-circle-check");
       break;
     case "fa-solid fa-trash-can":
-      remove(element)
+      deleteFromLocalStorage(element)
       element.parentElement.remove();
       break;
     default:
@@ -143,11 +142,11 @@ function iTagEvents(element) {
   }
 }
 
-function remove(element){
+function deleteFromLocalStorage(element){
   let arrayId = element.parentElement.id
   let localStorageNotes = JSON.parse(localStorage.getItem("notes"));
-  localStorageNotes.splice(arrayId, 1)
-  console.log(localStorageNotes)
+  // localStorageNotes.splice(arrayId, 1)
+  // console.log(localStorageNotes)
 }
 
 //change name? and be used by nav and projects-nav
@@ -166,7 +165,8 @@ function showInputForm(element, ancestorClass) {
     case saveInput.id:
       showPopup.classList.toggle("hide");
       popup.classList.toggle("hide");
-      addNoteLocalStorage(textInput.value);
+      addNoteToLocalStorage(textInput.value);
+      addNewNoteUI();
       break;
     case cancelInput.id:
       showPopup.classList.toggle("hide");
@@ -176,6 +176,49 @@ function showInputForm(element, ancestorClass) {
       break;
   }
 }
+
+function addNoteToLocalStorage(inputValue) {
+  let key = idGenerator("note")
+  localStorage.setItem(key,inputValue)
+
+  let newNodeContent = 
+    `  
+      <i class="fa-regular fa-circle"></i>
+      <input type="text" class="edit-text" value="${inputValue}">
+      <input type="date" class="date">
+      <i class="fa-solid fa-trash-can"></i>
+    `
+  let newNode = document.createElement("div")
+  newNode.classList.add("note-line")
+  newNode.id = key
+  newNode.innerHTML = newNodeContent
+  const button = document.getElementById("add-note");
+  const parentDiv = button.parentNode
+  parentDiv.insertBefore(newNode, button);
+
+}
+
+function addNewNoteUI(){
+
+
+
+}
+
+const idGenerator = (key) => {
+  let date = new Date();
+  return key+date.getTime();
+}
+
+
+// let lineTemplate =
+// `
+//   <div class="note-line" id=${idGenerator()}>
+//       <i class="fa-regular fa-circle"></i>
+//       <input type="text" class="edit-text" value="${arr[0]}">
+//       <input type="date" class="date">
+//       <i class="fa-solid fa-trash-can"></i>
+//   </div>
+// `
 
 let notesSectionContent = note.noteContent;
 export { notesSectionContent };
