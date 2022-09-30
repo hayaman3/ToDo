@@ -1,20 +1,7 @@
 const section = document.querySelector("main > section");
 
-// for trials
-// let localStorageObj = {
-//               "notes":[
-//               ["work","wt"],
-//               ["2d","ar"]
-//               ],
-//               "projects":[],
-// }
-// localStorage.setItem("notes",JSON.stringify(localStorageObj.notes))
-// localStorage.setItem("projects",JSON.stringify(localStorageObj.projects))
-
-
 
 const note = (() => {
-  let counter = 0;
 
   const notes = document.getElementById("notes-nav");
   notes.classList.add("active-nav");
@@ -81,15 +68,6 @@ const note = (() => {
   };
 })();
 
-//   (function(){
-//     const notes = document.getElementById("notes-nav");
-//     notes.classList.add("active-nav");
-//     section.className = "";
-//     section.classList.add("notes-section")
-//     section.innerHTML = note.htmlContent();
-// })();
-
-
 
 const noteSection = document.querySelector("section.notes-section");
 
@@ -143,10 +121,8 @@ function iTagEvents(element) {
 }
 
 function deleteFromLocalStorage(element){
-  let arrayId = element.parentElement.id
-  let localStorageNotes = JSON.parse(localStorage.getItem("notes"));
-  // localStorageNotes.splice(arrayId, 1)
-  // console.log(localStorageNotes)
+  let key = element.parentElement.id
+  localStorage.removeItem(key)
 }
 
 //change name? and be used by nav and projects-nav
@@ -192,6 +168,7 @@ function addNoteToLocalStorage(inputValue) {
   newNode.classList.add("note-line")
   newNode.id = key
   newNode.innerHTML = newNodeContent
+
   const button = document.getElementById("add-note");
   const parentDiv = button.parentNode
   parentDiv.insertBefore(newNode, button);
@@ -208,17 +185,6 @@ const idGenerator = (key) => {
   let date = new Date();
   return key+date.getTime();
 }
-
-
-// let lineTemplate =
-// `
-//   <div class="note-line" id=${idGenerator()}>
-//       <i class="fa-regular fa-circle"></i>
-//       <input type="text" class="edit-text" value="${arr[0]}">
-//       <input type="date" class="date">
-//       <i class="fa-solid fa-trash-can"></i>
-//   </div>
-// `
 
 let notesSectionContent = note.noteContent;
 export { notesSectionContent };
