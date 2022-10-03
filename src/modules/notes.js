@@ -1,11 +1,6 @@
 const section = document.querySelector("main > section");
 
-
 const note = (() => {
-
-  const notes = document.getElementById("notes-nav");
-  notes.classList.add("active-nav");
-  section.className = "";
   section.classList.add("notes-section");
 
   const addNoteButton = `
@@ -24,38 +19,39 @@ const note = (() => {
       </div>
     `
 
-  const loopLocalStorageNotes = () => {
-    if(localStorage>0){
-      let noteLine = ``;
-      let localStorageNotes = JSON.parse(localStorage.getItem("notes"));
-      console.log(localStorageNotes.length)
-      localStorageNotes.forEach((arr) =>{
-        ++counter
-        // console.log(counter)
-        // console.log(arr)
-        let lineTemplate =
+  function loopLocalStorage(){
+    let noteLine = ``
+    if(localStorage.length>0){
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        let value = localStorage.getItem(key)
+        value = value.split(",")
+        if(typeof value[1]=="undefined")value[1]=""
+        
+        if(key.includes("note")){
+          //if text is an array or not change date value="2018-07-22"
+          const lineTemplate =
           `
-            <div class="note-line" id=${idGenerator()}>
+            <div class="note-line" id=${key}>
                 <i class="fa-regular fa-circle"></i>
-                <input type="text" class="edit-text" value="${arr[0]}">
-                <input type="date" class="date">
+                <input type="text" class="edit-text" value="${value[0]}">
+                <input type="date" class="date" value="${value[1]}">
                 <i class="fa-solid fa-trash-can"></i>
             </div>
           `
           noteLine = noteLine + lineTemplate
-      });
-      return noteLine;
+        }
+      }
+      return noteLine 
     }else{
       return ""
     }
+
   };
-  const idGenerator = () => {
-    let date = new Date();
-    return date.getTime();
-  }
+
 
   let noteContent = `
-    ${loopLocalStorageNotes()}
+    ${loopLocalStorage()}
     ${addNoteButton}
     ${inputPopup}
   `;
@@ -88,14 +84,20 @@ noteSection.addEventListener("click", (event) => {
 
 noteSection.addEventListener("change", (event) => {
   let element = event.target;
-  if (element.classList.contains("input-text")) return;
-  if (element.classList.contains("edit-text")) {
+  if(element.classList.contains("input-text"))return;
+  if(element.classList.contains("edit-text")){
     //
     console.log(element.value + " edit");
   }
-  if (element.classList.contains("date")) {
-    //
-    console.log(element.value + " date");
+  if(element.classList.contains("date")) {
+    const key = element.parentElement.id
+    let value=""
+    if(!element.value){
+      value = element.previousElementSibling.value
+    }else{
+      value = element.previousElementSibling.value+","+element.value
+    }
+    localStorage.setItem(key,value)
   }
 });
 
@@ -141,8 +143,8 @@ function showInputForm(element, ancestorClass) {
     case saveInput.id:
       showPopup.classList.toggle("hide");
       popup.classList.toggle("hide");
-      addNoteToLocalStorage(textInput.value);
-      addNewNoteUI();
+      saveTextInput(textInput.value);
+      textInput.value = ''
       break;
     case cancelInput.id:
       showPopup.classList.toggle("hide");
@@ -153,7 +155,7 @@ function showInputForm(element, ancestorClass) {
   }
 }
 
-function addNoteToLocalStorage(inputValue) {
+function saveTextInput(inputValue) {
   let key = idGenerator("note")
   localStorage.setItem(key,inputValue)
 
@@ -175,11 +177,6 @@ function addNoteToLocalStorage(inputValue) {
 
 }
 
-function addNewNoteUI(){
-
-
-
-}
 
 const idGenerator = (key) => {
   let date = new Date();

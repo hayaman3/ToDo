@@ -20,11 +20,9 @@ const projectsNav = document.querySelector(".projects-nav")
 projectsNav.addEventListener("click", (event) =>{
     let element = event.target
     let ancestorClass = ".projects-nav"
-    console.log(element.id)
     if(element.id==="add-project"){
         showInputForm(element,ancestorClass) 
     }
-    console.log("s")
 })
 
 function showInputForm(element,ancestorClass){
