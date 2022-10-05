@@ -30,17 +30,19 @@
           <i class="fa-regular fa-folder-open"></i> 
           <span>Projects</span>
         </h2>
-        <button id="add-project" class="show">
-          <i class="fa-solid fa-plus"></i> 
-          <span> Add Project</span>
-        </button>
-        <div id="add-project-popup" class="input-popup hide popup">
-          <input id="input-project" class="input-text input" type="text"/>
-          <div id="new-project-buttons">
-            <button id="save-project-button" class="green-button save">Save</button>
-            <button id="cancel-project-button" class="red-button cancel">Cancel</button>
+        <div id="add-project-handler">
+          <button id="add-project" class="show">
+            <i class="fa-solid fa-plus"></i> 
+            Add Project
+          </button>
+          <div id="add-project-popup" class="input-popup hide popup">
+            <input id="input-project" class="input-text input" type="text" maxlength="7"/>
+            <div id="new-project-buttons">
+              <button id="save-project-button" class="save">Save</button>
+              <button id="cancel-project-button" class="cancel">Cancel</button>
             </div>
-        </div>
+          </div>
+      </div>
       </div>
     </nav>
     <section></section>

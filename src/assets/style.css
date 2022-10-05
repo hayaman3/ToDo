@@ -192,6 +192,7 @@ input[type="date"] {
   border-radius: 5px;
   width: 100%;
   text-align: left;
+  font-weight: bolder;
 }
 
 .notes-section > button:hover {
@@ -223,7 +224,7 @@ input[type="date"] {
 }
 
 .input-popup {
-  display: flex; /* temporary */
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -257,10 +258,10 @@ input[type="date"] {
   flex: 1;
 }
 
-.green-button {
+.save {
   background: #56c596;
 }
-.red-button {
+.cancel {
   background: #c55656;
 }
 

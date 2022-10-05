@@ -30,23 +30,6 @@ weekNav.addEventListener("click", (event) => {
   changeSection("today-section", weekContent)
 });
 
-// basicNotesNav.addEventListener("click", (event) => {
-//     console.log(event.currentTarget)
-//     console.log(event.target)
-//   toggleActiveNav(event.currentTarget.child);
-//   switch (event.target.id) {
-//     case "notes-nav":
-//       changeSection("notes-section", notesSectionContent);
-//       break;
-//     case "today-nav":
-//       changeSection("today-section", getTodayContent());
-//       break;
-//     case "week-nav":
-//       changeSection("today-section", weekContent);
-//       break;
-//     default:
-//   }
-// });
 
 function changeSection(sectionClass, sectionContent) {
   section.className = "";
@@ -62,23 +45,22 @@ function toggleActiveNav(element) {
   element.classList.add("active-nav");
 }
 
-const noteSection = document.querySelector(".notes-section");
-
 section.addEventListener("click", (event) => {
   let element = event.target;
   let elementTag = element.tagName.toLowerCase();
+  event.stopPropagation()
   switch (elementTag) {
-    case "i":
-      iTagEvents(element);
-      break;
     case "button":
       showInputForm(element, ".notes-section");
+      break;
+    case "i":
+      iTagEvents(element);
       break;
     default:
   }
 });
 
-noteSection.addEventListener("change", (event) => {
+section.addEventListener("change", (event) => {
   let element = event.target;
   if (element.classList.contains("input-text")) return;
   if (element.classList.contains("edit-text")) {
@@ -97,6 +79,7 @@ noteSection.addEventListener("change", (event) => {
   }
 });
 
+
 function iTagEvents(element) {
   switch (element.className) {
     case "fa-regular fa-circle-check":
@@ -113,14 +96,15 @@ function iTagEvents(element) {
       deleteFromLocalStorage(element);
       element.parentElement.remove();
       break;
+    case "fa-solid fa-plus":
+      const showPopup = document.querySelector(`.notes-section .show`);
+      const popup = document.querySelector(`.notes-section .popup`);
+      showPopup.classList.toggle("hide");
+      popup.classList.toggle("hide");
+      break;  
     default:
       console.log("switch at iTagEvents index.js");
   }
-}
-
-function deleteFromLocalStorage(element) {
-  const key = element.parentElement.id;
-  localStorage.removeItem(key);
 }
 
 function showInputForm(element, ancestorClass) {
@@ -138,7 +122,7 @@ function showInputForm(element, ancestorClass) {
     case saveInput.id:
       showPopup.classList.toggle("hide");
       popup.classList.toggle("hide");
-      saveTextInput(textInput.value);
+      saveTextInput(textInput.value, section.className);
       textInput.value = "";
       break;
     case cancelInput.id:
@@ -150,7 +134,14 @@ function showInputForm(element, ancestorClass) {
   }
 }
 
-function saveTextInput(inputValue) {
+function deleteFromLocalStorage(element) {
+  const key = element.parentElement.id;
+  localStorage.removeItem(key);
+}
+
+//refractor to take input from other projects
+function saveTextInput(inputValue,sectionClassName) {
+  console.log(sectionClassName)
   let key = idGenerator("note");
   localStorage.setItem(key, inputValue);
 
@@ -174,3 +165,4 @@ const idGenerator = (key) => {
   let date = new Date();
   return key + date.getTime();
 };
+
