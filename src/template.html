@@ -14,36 +14,18 @@
   <div id="main">
     <nav>
       <div class="basic-notes-nav">
-        <button type="button" id="notes-nav" class="active-nav note-nav-button"><i class="fa-solid fa-note-sticky"></i> 
-          <span>Notes</span>
+        <button type="button" id="notes-nav" class="active-nav note-nav-button" value="notes"><i class="fa-solid fa-pen-to-square"></i>
+          <span>Home</span>
         </button>
-        <button type="button" id="today-nav" class="note-nav-button"><i class="fa-solid fa-calendar-day"></i>
+        <button type="button" id="today-nav" class="note-nav-button" value="today"><i class="fa-solid fa-calendar-day"></i>
           <span>Today</span>
           </button>
-        <button type="button" id="week-nav" class="note-nav-button"><i class="fa-solid fa-calendar-week"></i> 
+        <button type="button" id="week-nav" class="note-nav-button" value="week"><i class="fa-solid fa-calendar-week"></i> 
           <span>This Week</span>
         </button>
       </div>   
       <br>
-      <div class="projects-nav">
-        <h2>
-          <i class="fa-regular fa-folder-open"></i> 
-          <span>Projects</span>
-        </h2>
-        <div id="add-project-handler">
-          <button id="add-project" class="show">
-            <i class="fa-solid fa-plus"></i> 
-            Add Project
-          </button>
-          <div id="add-project-popup" class="input-popup hide popup">
-            <input id="input-project" class="input-text input" type="text" maxlength="7"/>
-            <div id="new-project-buttons">
-              <button id="save-project-button" class="save">Save</button>
-              <button id="cancel-project-button" class="cancel">Cancel</button>
-            </div>
-          </div>
-      </div>
-      </div>
+      <div class="projects-nav"></div>
     </nav>
     <section></section>
   </div>

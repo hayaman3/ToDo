@@ -1,9 +1,7 @@
 const section = document.querySelector("section");
 
-section.classList.add("notes-section");
-
 const addNoteButton = /*html*/ `
-  <button id="add-note" class="show">
+  <button type="button" id="add-note" class="show">
     <i class="fa-solid fa-plus"></i> Add Note
   </button>
 `;
@@ -12,11 +10,18 @@ const inputPopup = /*html*/ `
   <div id="input-note-popup" class="input-popup hide popup">
     <input id="input-note" class="input-text input" type="text"/>
     <div id="input-buttons">
-      <button id="save-input-button" class="green-button save">Save</button>
-      <button id="cancel-input-button" class="red-button cancel">Cancel</button>
+      <button type="button" id="save-input-button" class="green-button save">Save</button>
+      <button type="button" id="cancel-input-button" class="red-button cancel">Cancel</button>
     </div>
   </div>
 `;
+
+const sectionAddNote = /*html*/`
+  <div class="section-add-note">
+    ${addNoteButton}
+    ${inputPopup}
+  </div>
+`
 
 function loopLocalStorage() {
   let noteLine = ``;
@@ -44,12 +49,10 @@ function loopLocalStorage() {
   return noteLine;
 }
 
-let notesSectionContent = `
-  ${loopLocalStorage()}
-  ${addNoteButton}
-  ${inputPopup}
-`;
+function getNotesSectionContent(){
+  return `${loopLocalStorage()}${sectionAddNote}`;
+}
 
-section.innerHTML = notesSectionContent;
+section.innerHTML = getNotesSectionContent();
 
-export { notesSectionContent };
+export { getNotesSectionContent };

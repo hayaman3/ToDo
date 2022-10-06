@@ -47,6 +47,10 @@ button {
   cursor: pointer;
 }
 
+i:not(header i){
+  cursor: pointer;
+}
+
 ul {
   list-style-type: none;
 }
@@ -94,6 +98,12 @@ nav button {
 }
 
 .projects-nav button {
+  font-size: 1.1em;
+  padding: 8px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: left;
+
 }
 
 #add-project {
@@ -112,17 +122,16 @@ nav button {
 }
 
 section {
+  display: flex;
   flex-grow: 1;
   padding: 2em;
   width: 100%;
   gap: 5px;
+  flex-direction: column;
 }
 
 /* notes-section */
-.notes-section {
-  display: flex;
-  flex-direction: column;
-}
+
 
 .note-line {
   width: 100%;
@@ -179,11 +188,8 @@ input[type="date"] {
   cursor: pointer;
 }
 
-.notes-section i {
-  cursor: pointer;
-}
 
-.notes-section > button {
+.section-add-note > button {
   font-size: 15px;
   width: fit-content;
   background: var(--body);
@@ -195,7 +201,7 @@ input[type="date"] {
   font-weight: bolder;
 }
 
-.notes-section > button:hover {
+.section-add-note > button:hover {
   background: var(--darker);
   box-shadow: 0 1px 5px rgb(0 0 0 / 0.4);
 }

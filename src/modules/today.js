@@ -1,4 +1,4 @@
-function getTodayContent() {
+function getTodaySectionContent() {
   let noteLine = `<h1>Today</h1>`;
 
   if (localStorage.length == 0) return "";
@@ -28,4 +28,4 @@ function getTodayContent() {
 
 const isToday = (date) => new Date().toDateString() === date.toDateString();
 
-export { getTodayContent };
+export { getTodaySectionContent };
