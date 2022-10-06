@@ -3,7 +3,7 @@ import "./assets/fonts-6/css/all.css";
 import github from "./assets/github.svg";
 import TOP from "./assets/TOP.svg";
 
-import { getNotesSectionContent } from "./modules/home.js";
+import { getNotesSectionContent } from "./modules/notes.js";
 import { getTodaySectionContent } from "./modules/today.js";
 import { weekContent } from "./modules/week.js";
 import { projectsSectionContent } from "./modules/projects.js";
