@@ -1,4 +1,5 @@
 const section = document.querySelector("section");
+section.classList.add("note")
 
 const addNoteButton = /*html*/ `
   <button type="button" id="add-note" class="show">

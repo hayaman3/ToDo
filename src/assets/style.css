@@ -26,8 +26,6 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-
-
 header {
   background-color: var(--accent);
   color: var(--body);
@@ -47,7 +45,7 @@ button {
   cursor: pointer;
 }
 
-i:not(header i){
+i:not(header i) {
   cursor: pointer;
 }
 
@@ -83,6 +81,27 @@ nav button {
   box-shadow: 0 1.5px 5px rgb(0 0 0 / 0.4);
 }
 
+.project{
+  display: flex;
+  align-items: center;
+  
+}
+.project span{
+  text-indent: .5em;
+  flex:1
+}
+
+.project i{
+  font-size: .8em;
+}
+
+.fa-xmark::before{
+  opacity: 0;
+}
+.fa-xmark:hover::before{
+  opacity: .9;
+}
+
 .basic-notes-nav button {
   font-size: 1.1em;
   padding: 8px 8px;
@@ -91,19 +110,17 @@ nav button {
   text-align: left;
 }
 
-.note-nav-button button {
-}
-
-.projects-nav {
-}
-
-.projects-nav button {
+.projects-nav > button {
   font-size: 1.1em;
   padding: 8px 8px;
   border-radius: 5px;
   font-weight: bold;
   text-align: left;
+}
 
+h1{
+  display: flex;
+  justify-content: space-between;
 }
 
 #add-project {
@@ -131,7 +148,6 @@ section {
 }
 
 /* notes-section */
-
 
 .note-line {
   width: 100%;
@@ -187,7 +203,6 @@ input[type="date"] {
   border: none;
   cursor: pointer;
 }
-
 
 .section-add-note > button {
   font-size: 15px;
@@ -269,18 +284,6 @@ input[type="date"] {
 }
 .cancel {
   background: #c55656;
-}
-
-/* today || */
-.today-section {
-  display: flex;
-  flex-direction: column;
-}
-
-/* week || */
-.week-section {
-  display: flex;
-  flex-direction: column;
 }
 
 /* footer || */

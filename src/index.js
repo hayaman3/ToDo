@@ -6,60 +6,55 @@ import TOP from "./assets/TOP.svg";
 import { getNotesSectionContent } from "./modules/notes.js";
 import { getTodaySectionContent } from "./modules/today.js";
 import { weekContent } from "./modules/week.js";
-import { projectsSectionContent } from "./modules/projects.js";
+import { getProjectsSectionContent } from "./modules/projects.js";
 
 const section = document.querySelector("section");
-const basicNotesNav = document.querySelector(".basic-notes-nav")
+const nav = document.querySelector("nav");
 
-const nav = document.querySelector("nav")
+//nav control ||
 nav.addEventListener("click", (e) => {
-  const element = e.target
-  if(!element.closest("button"))return
-  if(element.closest("button").value==null)return
+  const element = e.target;
+  const buttonId = element.closest("button").id;
 
-  const buttonValue = element.closest("button").value
-  
-  if(element.closest(".basic-notes-nav")){
+  if (!element.closest("button")) return;
+  if (element.closest("#add-project-handler")) return; //project added handled @ project.js
+
+  if (element.closest(".basic-notes-nav") || element.closest(".projects-nav")) {
     toggleActiveNav(element);
-    changeSection(buttonValue)
+    changeSection(buttonId);
   }
-  if(element.closest(".projects-nav")){
-    if(element.closest("add-project-handler")){
-      // 
-      console.log("add")
-    }else{//maybe better if used with if or use switch for everything
-      toggleActiveNav(element)
-      //changeSection(buttonValue,buttonid)
-    }
-    
-  }
-  
 });
 
-function changeSection(buttonValue) {
-  switch (buttonValue) {
+function changeSection(buttonId) {
+  section.classList = "";
+  switch (buttonId) {
     case "notes":
-      section.innerHTML = getNotesSectionContent() 
+      section.classList = "note";
+      section.innerHTML = getNotesSectionContent();
       break;
     case "today":
-      section.innerHTML = getTodaySectionContent() 
+      section.classList = "today";
+      section.innerHTML = getTodaySectionContent();
       break;
     case "week":
-      section.innerHTML = weekContent 
+      section.classList = "week";
+      section.innerHTML = weekContent;
       break;
     default:
+      section.classList = buttonId;
+      section.innerHTML = getProjectsSectionContent(buttonId);
       break;
   }
-
 }
 
 function toggleActiveNav(element) {
-  const activeNav = document.querySelector('.active-nav')
-  const activeButton = element.closest("button")
-  activeNav.classList.remove("active-nav")
-  activeButton.classList.add("active-nav")
+  const removeActive = document.querySelector(".active-nav");
+  const newActive = element.closest("button");
+  removeActive.classList.remove("active-nav");
+  newActive.classList.add("active-nav");
 }
 
+//section control ||
 section.addEventListener("click", (event) => {
   let element = event.target;
   let elementTag = element.tagName.toLowerCase();
@@ -67,7 +62,7 @@ section.addEventListener("click", (event) => {
     iTagEvents(element);
   }
   if (event.target.closest(".section-add-note")) {
-    showInputForm(element, ".notes-section")
+    showInputForm(element, `.${section.className}`);
   }
 });
 
@@ -75,7 +70,6 @@ section.addEventListener("change", (event) => {
   let element = event.target;
   if (element.classList.contains("input-text")) return;
   if (element.classList.contains("edit-text")) {
-    console.log(element.parentElement.id);
     localStorage.setItem(element.parentElement.id, element.value);
   }
   if (element.classList.contains("date")) {
@@ -90,6 +84,7 @@ section.addEventListener("change", (event) => {
   }
 });
 
+// utility functions ||
 function iTagEvents(element) {
   switch (element.className) {
     case "fa-regular fa-circle-check":
@@ -118,22 +113,23 @@ function showInputForm(element, ancestorClass) {
   const saveInput = document.querySelector(`${ancestorClass} .save`);
   const cancelInput = document.querySelector(`${ancestorClass} .cancel`);
 
-
-  if(element.closest(".show")){
+  const toggleClass = () => {
     showPopup.classList.toggle("hide");
     popup.classList.toggle("hide");
+  };
+
+  if (element.closest(".show")) {
+    toggleClass();
   }
 
   switch (element.id) {
     case saveInput.id:
-      showPopup.classList.toggle("hide");
-      popup.classList.toggle("hide");
-      saveTextInput(textInput.value, section.className);
+      toggleClass();
+      saveTextInput(textInput.value, ancestorClass);
       textInput.value = "";
       break;
     case cancelInput.id:
-      showPopup.classList.toggle("hide");
-      popup.classList.toggle("hide");
+      toggleClass();
       break;
     default:
       break;
@@ -145,10 +141,8 @@ function deleteFromLocalStorage(element) {
   localStorage.removeItem(key);
 }
 
-//refractor to take input from other projects
 function saveTextInput(inputValue, localStoragePrefix) {
-  console.log(localStoragePrefix);
-  let key = idGenerator("note");
+  let key = idGenerator("note" + localStoragePrefix);
   localStorage.setItem(key, inputValue);
 
   let newNodeContent = `  
@@ -162,7 +156,7 @@ function saveTextInput(inputValue, localStoragePrefix) {
   newNode.id = key;
   newNode.innerHTML = newNodeContent;
 
-  const button = document.getElementById("add-note");
+  const button = document.querySelector(".section-add-note");
   const parentDiv = button.parentNode;
   parentDiv.insertBefore(newNode, button);
 }
