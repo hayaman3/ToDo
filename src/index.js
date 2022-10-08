@@ -14,10 +14,16 @@ const nav = document.querySelector("nav");
 //nav control ||
 nav.addEventListener("click", (e) => {
   const element = e.target;
-  const buttonId = element.closest("button").id;
-
   if (!element.closest("button")) return;
+
+  const buttonId = element.closest("button").id;
   if (element.closest("#add-project-handler")) return; //project added handled @ project.js
+
+  if(element.classList.contains("fa-xmark")){
+    const project = element.closest(".project")
+    project.remove()
+    deleteProjectLocalStorage(project.id)
+  }
 
   if (element.closest(".basic-notes-nav") || element.closest(".projects-nav")) {
     toggleActiveNav(element);
@@ -98,7 +104,7 @@ function iTagEvents(element) {
       element.classList.add("fa-regular", "fa-circle-check");
       break;
     case "fa-solid fa-trash-can":
-      deleteFromLocalStorage(element);
+Note(element);
       element.parentElement.remove();
       break;
     default:
@@ -136,9 +142,19 @@ function showInputForm(element, ancestorClass) {
   }
 }
 
-function deleteFromLocalStorage(element) {
+function deleteNoteLocalStorage(element) {
   const key = element.parentElement.id;
   localStorage.removeItem(key);
+}
+
+function deleteProjectLocalStorage(projectId){
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if(key.includes(projectId)){
+      localStorage.removeItem(key)
+    }
+  }
+  changeSection("notes")
 }
 
 function saveTextInput(inputValue, localStoragePrefix) {

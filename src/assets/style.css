@@ -84,8 +84,9 @@ nav button {
 .project{
   display: flex;
   align-items: center;
-  
 }
+
+
 .project span{
   text-indent: .5em;
   flex:1
@@ -96,10 +97,11 @@ nav button {
 }
 
 .fa-xmark::before{
-  opacity: 0;
+  visibility: hidden;
 }
-.fa-xmark:hover::before{
-  opacity: .9;
+
+.project:hover .fa-xmark::before {
+  visibility: visible;
 }
 
 .basic-notes-nav button {

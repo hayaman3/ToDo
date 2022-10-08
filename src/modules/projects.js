@@ -10,7 +10,7 @@ const getProjectsFromLocalStorage = () => {
       const lineTemplate = `
         <button type="button" id="${key}" class="project">  
           <i class="fa-regular fa-square"></i>
-          <span> ${value}</span>
+          <span>${value}</span>
           <i class="fa-solid fa-xmark"></i>
         </button>
       `;
@@ -87,11 +87,13 @@ function saveProject(idPrefix, inputValue) {
   localStorage.setItem(key, inputValue);
 
   const newNodeContent = `  
-    <i class="fa-regular fa-square"></i> ${inputValue}
+    <i class="fa-regular fa-square"></i> 
+    <span>${inputValue}</span>
+    <i class="fa-solid fa-xmark"></i>
   `;
-  // when clicked <i class="fa-regular fa-square-check"></i>
 
   const newProjectButton = document.createElement("button");
+  newProjectButton.classList.add("project");
   newProjectButton.id = key;
   newProjectButton.innerHTML = newNodeContent;
 
