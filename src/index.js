@@ -5,7 +5,7 @@ import TOP from "./assets/TOP.svg";
 
 import { getNotesSectionContent } from "./modules/notes.js";
 import { getTodaySectionContent } from "./modules/today.js";
-import { weekContent } from "./modules/week.js";
+import { getWeekSectionContent } from "./modules/week.js";
 import { getProjectsSectionContent } from "./modules/projects.js";
 
 const section = document.querySelector("section");
@@ -19,10 +19,10 @@ nav.addEventListener("click", (e) => {
   const buttonId = element.closest("button").id;
   if (element.closest("#add-project-handler")) return; //project added handled @ project.js
 
-  if(element.classList.contains("fa-xmark")){
-    const project = element.closest(".project")
-    project.remove()
-    deleteProjectLocalStorage(project.id)
+  if (element.classList.contains("fa-xmark")) {
+    const project = element.closest(".project");
+    project.remove();
+    deleteProjectLocalStorage(project.id);
   }
 
   if (element.closest(".basic-notes-nav") || element.closest(".projects-nav")) {
@@ -44,7 +44,7 @@ function changeSection(buttonId) {
       break;
     case "week":
       section.classList = "week";
-      section.innerHTML = weekContent;
+      section.innerHTML = getWeekSectionContent();
       break;
     default:
       section.classList = buttonId;
@@ -104,7 +104,7 @@ function iTagEvents(element) {
       element.classList.add("fa-regular", "fa-circle-check");
       break;
     case "fa-solid fa-trash-can":
-Note(element);
+      Note(element);
       element.parentElement.remove();
       break;
     default:
@@ -147,14 +147,14 @@ function deleteNoteLocalStorage(element) {
   localStorage.removeItem(key);
 }
 
-function deleteProjectLocalStorage(projectId){
+function deleteProjectLocalStorage(projectId) {
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if(key.includes(projectId)){
-      localStorage.removeItem(key)
+    if (key.includes(projectId)) {
+      localStorage.removeItem(key);
     }
   }
-  changeSection("notes")
+  changeSection("notes");
 }
 
 function saveTextInput(inputValue, localStoragePrefix) {
