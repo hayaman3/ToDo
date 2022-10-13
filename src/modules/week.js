@@ -1,29 +1,30 @@
 const getWeekSectionContent = () => {
-  let noteLine = `<h1>This Week</h1>`;
+	let noteLine = `<h1>This Week</h1>`;
 
-  if (localStorage.length == 0) return "";
+	if (localStorage.length == 0) return '';
 
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    let value = localStorage.getItem(key).split(",");
+	const week = getWeek(); // saved to a variable to avoid calling function mutiple times
 
-    if (typeof value[1] == "undefined") value[1] = "";
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		let value = localStorage.getItem(key).split(',');
 
-    const week = getWeek()
-    if (week.includes(value[1])) {
-      const lineTemplate = `
+		if (typeof value[1] == 'undefined') value[1] = '';
+
+		if (week.includes(value[1])) {
+			const lineTemplate = `
         <div class="note-line" id=${key}>
-            <i class="fa-regular fa-circle"></i>
-            <input type="text" class="edit-text" value="${value[0]}">
-            <input type="date" class="date" value="${value[1]}">
-            <i class="fa-solid fa-trash-can"></i>
+          <i class="fa-regular fa-circle"></i>
+          <input type="text" class="edit-text" value="${value[0]}">
+          <input type="date" class="date" value="${value[1]}">
+          <i class="fa-solid fa-trash-can"></i>
         </div>
       `;
-      noteLine = noteLine + lineTemplate;
-    }
-  }
-  return noteLine;
-}
+			noteLine = noteLine + lineTemplate;
+		}
+	}
+	return noteLine;
+};
 
 const getWeek = () => {
 	let curr = new Date();
@@ -34,11 +35,7 @@ const getWeek = () => {
 		let day = new Date(curr.setDate(first)).toISOString().slice(0, 10);
 		week.push(day);
 	}
-  return week;
+	return week;
 };
-
-const weekContent = `
-    ${getWeekSectionContent()}
-`;
 
 export { getWeekSectionContent };

@@ -1,183 +1,181 @@
-import "./assets/style.css";
-import "./assets/fonts-6/css/all.css";
-import github from "./assets/github.svg";
-import TOP from "./assets/TOP.svg";
+import './assets/style.css';
+import './assets/fonts-6/css/all.css';
+import github from './assets/github.svg';
+import TOP from './assets/TOP.svg';
 
-import { getNotesSectionContent } from "./modules/notes.js";
-import { getTodaySectionContent } from "./modules/today.js";
-import { getWeekSectionContent } from "./modules/week.js";
-import { getProjectsSectionContent } from "./modules/projects.js";
+import { getNotesSectionContent } from './modules/notes.js';
+import { getTodaySectionContent } from './modules/today.js';
+import { getWeekSectionContent } from './modules/week.js';
+import { getProjectsSectionContent } from './modules/projects.js';
 
-const section = document.querySelector("section");
-const nav = document.querySelector("nav");
+const section = document.querySelector('section');
+const nav = document.querySelector('nav');
 
 //nav control ||
-nav.addEventListener("click", (e) => {
-  const element = e.target;
-  if (!element.closest("button")) return;
+nav.addEventListener('click', e => {
+	const element = e.target;
+	if (!element.closest('button')) return;
 
-  const buttonId = element.closest("button").id;
-  if (element.closest("#add-project-handler")) return; //project added handled @ project.js
+	const buttonId = element.closest('button').id;
+	if (element.closest('#add-project-handler')) return; //project added handled @ project.js
 
-  if (element.classList.contains("fa-xmark")) {
-    const project = element.closest(".project");
-    project.remove();
-    deleteProjectLocalStorage(project.id);
-  }
+	if (element.classList.contains('fa-xmark')) {
+		const project = element.closest('.project');
+		project.remove();
+		deleteProjectLocalStorage(project.id);
+	}
 
-  if (element.closest(".basic-notes-nav") || element.closest(".projects-nav")) {
-    toggleActiveNav(element);
-    changeSection(buttonId);
-  }
+	if (element.closest('.basic-notes-nav') || element.closest('.projects-nav')) {
+		toggleActiveNav(element);
+		changeSection(buttonId);
+	}
 });
 
 function changeSection(buttonId) {
-  section.classList = "";
-  switch (buttonId) {
-    case "notes":
-      section.classList = "note";
-      section.innerHTML = getNotesSectionContent();
-      break;
-    case "today":
-      section.classList = "today";
-      section.innerHTML = getTodaySectionContent();
-      break;
-    case "week":
-      section.classList = "week";
-      section.innerHTML = getWeekSectionContent();
-      break;
-    default:
-      section.classList = buttonId;
-      section.innerHTML = getProjectsSectionContent(buttonId);
-      break;
-  }
+	section.classList = '';
+	switch (buttonId) {
+		case 'notes':
+			section.classList = 'note';
+			section.innerHTML = getNotesSectionContent();
+			break;
+		case 'today':
+			section.classList = 'today';
+			section.innerHTML = getTodaySectionContent();
+			break;
+		case 'week':
+			section.classList = 'week';
+			section.innerHTML = getWeekSectionContent();
+			break;
+		default:
+			section.classList = buttonId;
+			section.innerHTML = getProjectsSectionContent(buttonId);
+			break;
+	}
 }
 
 function toggleActiveNav(element) {
-  const removeActive = document.querySelector(".active-nav");
-  const newActive = element.closest("button");
-  removeActive.classList.remove("active-nav");
-  newActive.classList.add("active-nav");
+	const removeActive = document.querySelector('.active-nav');
+	const newActive = element.closest('button');
+	removeActive.classList.remove('active-nav');
+	newActive.classList.add('active-nav');
 }
 
 //section control ||
-section.addEventListener("click", (event) => {
-  let element = event.target;
-  let elementTag = element.tagName.toLowerCase();
-  if (event.target.closest(".note-line") && elementTag == "i") {
-    iTagEvents(element);
-  }
-  if (event.target.closest(".section-add-note")) {
-    showInputForm(element, `.${section.className}`);
-  }
+section.addEventListener('click', event => {
+	let element = event.target;
+	let elementTag = element.tagName.toLowerCase();
+	if (event.target.closest('.note-line') && elementTag == 'i') {
+		iTagEvents(element);
+	}
+	if (event.target.closest('.section-add-note')) {
+		showInputForm(element, `.${section.className}`);
+	}
 });
 
-section.addEventListener("change", (event) => {
-  let element = event.target;
-  if (element.classList.contains("input-text")) return;
-  if (element.classList.contains("edit-text")) {
-    localStorage.setItem(element.parentElement.id, element.value);
-  }
-  if (element.classList.contains("date")) {
-    const key = element.parentElement.id;
-    let value = "";
-    if (!element.value) {
-      value = element.previousElementSibling.value;
-    } else {
-      value = element.previousElementSibling.value + "," + element.value;
-    }
-    localStorage.setItem(key, value);
-  }
+section.addEventListener('change', event => {
+	let element = event.target;
+	if (element.classList.contains('input-text')) return;
+	if (element.classList.contains('edit-text')) {
+		localStorage.setItem(element.parentElement.id, element.value);
+	}
+	if (element.classList.contains('date')) {
+		const key = element.parentElement.id;
+		let value = '';
+		if (!element.value) {
+			value = element.previousElementSibling.value;
+		} else {
+			value = element.previousElementSibling.value + ',' + element.value;
+		}
+		localStorage.setItem(key, value);
+	}
 });
 
 // utility functions ||
 function iTagEvents(element) {
-  switch (element.className) {
-    case "fa-regular fa-circle-check":
-      element.nextElementSibling.classList.remove("checked-note");
-      element.className = "";
-      element.classList.add("fa-regular", "fa-circle");
-      break;
-    case "fa-regular fa-circle":
-      element.nextElementSibling.classList.add("checked-note");
-      element.className = "";
-      element.classList.add("fa-regular", "fa-circle-check");
-      break;
-    case "fa-solid fa-trash-can":
-      Note(element);
-      element.parentElement.remove();
-      break;
-    default:
-      console.log("iTagEvents");
-  }
+	switch (element.className) {
+		case 'fa-regular fa-circle-check':
+			element.nextElementSibling.classList.remove('checked-note');
+			element.className = '';
+			element.classList.add('fa-regular', 'fa-circle');
+			break;
+		case 'fa-regular fa-circle':
+			element.nextElementSibling.classList.add('checked-note');
+			element.className = '';
+			element.classList.add('fa-regular', 'fa-circle-check');
+			break;
+		case 'fa-solid fa-trash-can':
+			deleteNoteLocalStorage(element);
+			element.parentElement.remove();
+			break;
+		default:
+			console.log('iTagEvents');
+	}
 }
 
 function showInputForm(element, ancestorClass) {
-  const showPopup = document.querySelector(`${ancestorClass} .show`);
-  const popup = document.querySelector(`${ancestorClass} .popup`);
-  const textInput = document.querySelector(`${ancestorClass} .input`);
-  const saveInput = document.querySelector(`${ancestorClass} .save`);
-  const cancelInput = document.querySelector(`${ancestorClass} .cancel`);
+	const showPopup = document.querySelector(`${ancestorClass} .show`);
+	const popup = document.querySelector(`${ancestorClass} .popup`);
+	const textInput = document.querySelector(`${ancestorClass} .input`);
+	const saveInput = document.querySelector(`${ancestorClass} .save`);
+	const cancelInput = document.querySelector(`${ancestorClass} .cancel`);
 
-  const toggleClass = () => {
-    showPopup.classList.toggle("hide");
-    popup.classList.toggle("hide");
-  };
+	if (element.closest('.show')) {
+		toggleClass();
+	}
 
-  if (element.closest(".show")) {
-    toggleClass();
-  }
+	switch (element.id) {
+		case saveInput.id:
+			toggleClass();
+			saveTextInput(textInput.value, ancestorClass);
+			textInput.value = '';
+			break;
+		case cancelInput.id:
+			toggleClass();
+			break;
+		default:
+			break;
+	}
 
-  switch (element.id) {
-    case saveInput.id:
-      toggleClass();
-      saveTextInput(textInput.value, ancestorClass);
-      textInput.value = "";
-      break;
-    case cancelInput.id:
-      toggleClass();
-      break;
-    default:
-      break;
-  }
+	function toggleClass() {
+		showPopup.classList.toggle('hide');
+		popup.classList.toggle('hide');
+	}
 }
 
 function deleteNoteLocalStorage(element) {
-  const key = element.parentElement.id;
-  localStorage.removeItem(key);
+	const key = element.parentElement.id;
+	localStorage.removeItem(key);
 }
 
 function deleteProjectLocalStorage(projectId) {
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key.includes(projectId)) {
-      localStorage.removeItem(key);
-    }
-  }
-  changeSection("notes");
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		if (key.includes(projectId)) localStorage.removeItem(key);
+	}
+	changeSection('notes');
 }
 
 function saveTextInput(inputValue, localStoragePrefix) {
-  let key = idGenerator("note" + localStoragePrefix);
-  localStorage.setItem(key, inputValue);
+	let key = idGenerator('note' + localStoragePrefix);
+	localStorage.setItem(key, inputValue);
 
-  let newNodeContent = `  
+	let newNodeContent = `  
       <i class="fa-regular fa-circle"></i>
       <input type="text" class="edit-text" value="${inputValue}">
       <input type="date" class="date">
       <i class="fa-solid fa-trash-can"></i>
     `;
-  let newNode = document.createElement("div");
-  newNode.classList.add("note-line");
-  newNode.id = key;
-  newNode.innerHTML = newNodeContent;
+	let newNode = document.createElement('div');
+	newNode.classList.add('note-line');
+	newNode.id = key;
+	newNode.innerHTML = newNodeContent;
 
-  const button = document.querySelector(".section-add-note");
-  const parentDiv = button.parentNode;
-  parentDiv.insertBefore(newNode, button);
+	const button = document.querySelector('.section-add-note');
+	const parentDiv = button.parentNode;
+	parentDiv.insertBefore(newNode, button);
 }
 
-const idGenerator = (key) => {
-  let date = new Date();
-  return key + date.getTime();
+const idGenerator = key => {
+	let date = new Date();
+	return key + date.getTime();
 };

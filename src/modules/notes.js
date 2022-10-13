@@ -1,5 +1,5 @@
-const section = document.querySelector("section");
-section.classList.add("note")
+const section = document.querySelector('section');
+section.classList.add('note');
 
 const addNoteButton = /*html*/ `
   <button type="button" id="add-note" class="show">
@@ -17,26 +17,26 @@ const inputPopup = /*html*/ `
   </div>
 `;
 
-const sectionAddNote = /*html*/`
+const sectionAddNote = /*html*/ `
   <div class="section-add-note">
     ${addNoteButton}
     ${inputPopup}
   </div>
-`
+`;
 
 function loopLocalStorage() {
-  let noteLine = ``;
+	let noteLine = ``;
 
-  if (localStorage.length == 0) return "";
+	if (localStorage.length == 0) return '';
 
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    let value = localStorage.getItem(key).split(",");
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		let value = localStorage.getItem(key).split(',');
 
-    if (typeof value[1] == "undefined") value[1] = "";
+		if (typeof value[1] == 'undefined') value[1] = '';
 
-    if (key.includes("note")) {
-      const lineTemplate = /*html*/ `
+		if (key.includes('note')) {
+			const lineTemplate = /*html*/ `
         <div class="note-line" id=${key}>
           <i class="fa-regular fa-circle"></i>
           <input type="text" class="edit-text" value="${value[0]}">
@@ -44,14 +44,14 @@ function loopLocalStorage() {
           <i class="fa-solid fa-trash-can"></i>
         </div>
       `;
-      noteLine = noteLine + lineTemplate;
-    }
-  }
-  return noteLine;
+			noteLine = noteLine + lineTemplate;
+		}
+	}
+	return noteLine;
 }
 
-function getNotesSectionContent(){
-  return `${loopLocalStorage()}${sectionAddNote}`;
+function getNotesSectionContent() {
+	return `${loopLocalStorage()}${sectionAddNote}`;
 }
 
 section.innerHTML = getNotesSectionContent();
