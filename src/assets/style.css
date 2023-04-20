@@ -29,14 +29,13 @@ body {
 header {
 	background-color: var(--accent);
 	color: var(--body);
-	height: 15vh;
+	padding: 1.5rem 2.2rem;
 	display: flex;
-	align-items: center;
-	gap: 1vw;
-	font-size: 2em;
-	padding-left: 1em;
+	align-items: start;
+	gap: 2rem;
+	font-size: clamp(2rem, 2rem + 1.5vw, 6rem);
 	font-weight: bold;
-	letter-spacing: 5px;
+	letter-spacing: 0.3rem;
 }
 
 button {
@@ -54,7 +53,8 @@ ul {
 }
 
 #main {
-	flex-grow: 1; /* #main takes available space */
+	flex-grow: 1;
+	/* #main takes available space */
 	background-color: var(--body);
 	display: flex;
 }
@@ -63,17 +63,18 @@ ul {
 nav {
 	display: flex;
 	flex-direction: column;
-	width: 250px;
+	width: clamp(250px, 25vw, 500px);
+	font-size: clamp(1rem, 1rem + .5vw, 3rem);
 	font-weight: bold;
-	padding: 1em;
+	padding: 1.5rem;
 	background: var(--darker);
-	gap: 0.8em;
+	gap: 0.8rem;
 }
 
-nav > div {
+nav>div {
 	display: flex;
 	flex-direction: column;
-	gap: 0.8em;
+	gap: 1rem;
 }
 
 nav button {
@@ -92,7 +93,7 @@ nav button {
 }
 
 .project i {
-	font-size: 0.8em;
+	font-size: 0.8rem;
 }
 
 .fa-xmark::before {
@@ -103,30 +104,24 @@ nav button {
 	visibility: visible;
 }
 
-.basic-notes-nav button {
-	font-size: 1.1em;
-	padding: 8px 8px;
+.basic-notes-nav button,
+.projects-nav>button {
+	font-size: 1em;
+	padding: .5rem .5rem;
 	border-radius: 5px;
 	font-weight: bold;
 	text-align: left;
 }
 
-.projects-nav > button {
-	font-size: 1.1em;
-	padding: 8px 8px;
-	border-radius: 5px;
-	font-weight: bold;
-	text-align: left;
-}
-
-h1 {
+h2 {
 	display: flex;
-	justify-content: space-between;
+	gap: .3rem;
+	font-size: 1.3em;
 }
 
 #add-project {
-	padding: 5px 5px;
-	font-size: 0.7em;
+	padding: .5rem .5rem;
+	font-size: 0.8em;
 	background: inherit;
 	box-shadow: none;
 	border-radius: 3px;
@@ -206,7 +201,7 @@ input[type='date'] {
 	cursor: pointer;
 }
 
-.section-add-note > button {
+.section-add-note>button {
 	font-size: 15px;
 	width: fit-content;
 	background: var(--body);
@@ -218,7 +213,7 @@ input[type='date'] {
 	font-weight: bolder;
 }
 
-.section-add-note > button:hover {
+.section-add-note>button:hover {
 	background: var(--darker);
 	box-shadow: 0 1px 5px rgb(0 0 0 / 0.4);
 }
@@ -233,6 +228,7 @@ input[type='date'] {
 	border-radius: 3px;
 	text-indent: 0.3em;
 }
+
 #add-project-popup div {
 	display: flex;
 	gap: 5px;
@@ -284,6 +280,7 @@ input[type='date'] {
 .save {
 	background: #56c596;
 }
+
 .cancel {
 	background: #c55656;
 }
@@ -300,7 +297,7 @@ footer {
 	background-color: var(--body);
 }
 
-footer > a > img {
+footer>a>img {
 	height: 20px;
 	width: 16px;
 }
@@ -313,9 +310,11 @@ footer > a > img {
 .checked-note {
 	text-decoration: line-through;
 }
+
 .flex {
 	display: flex;
 }
+
 .hide {
 	display: none;
 }
