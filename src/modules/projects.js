@@ -33,7 +33,7 @@ function projectsNavContent() {
   <div id="add-project-handler">
     <button type="button" id="add-project" class="show">
       <i class="fa-solid fa-plus"></i>
-      Add Project
+      <span>Add Project</span>
     </button>
     <div id="add-project-popup" class="input-popup hide popup">
       <input

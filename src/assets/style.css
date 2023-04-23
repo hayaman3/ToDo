@@ -32,8 +32,8 @@ header {
 	padding: 1.5rem 2.2rem;
 	display: flex;
 	align-items: start;
-	gap: 2rem;
-	font-size: clamp(2rem, 2rem + 1.5vw, 6rem);
+	gap: 1rem;
+	font-size: clamp(1.5rem, 1.5rem + 1.5vw, 6rem);
 	font-weight: bold;
 	letter-spacing: 0.3rem;
 }
@@ -63,10 +63,11 @@ ul {
 nav {
 	display: flex;
 	flex-direction: column;
-	width: clamp(250px, 25vw, 500px);
-	font-size: clamp(1rem, 1rem + .5vw, 3rem);
+	align-items: center;
+	width: clamp(90px, 25vw, 500px);
+	font-size: clamp(1rem, 1rem + .1vw, 3rem);
 	font-weight: bold;
-	padding: 1.5rem;
+	padding: 1.5rem clamp(1rem, 1rem + .1vw, 1.5rem);
 	background: var(--darker);
 	gap: 0.8rem;
 }
@@ -74,16 +75,17 @@ nav {
 nav>div {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	gap: 1rem;
 }
 
 nav button {
-	width: 100%;
 	box-shadow: 0 1.5px 5px rgb(0 0 0 / 0.4);
 }
 
 .project {
 	display: flex;
+	gap: .5rem;
 	align-items: center;
 }
 
@@ -116,7 +118,7 @@ nav button {
 h2 {
 	display: flex;
 	gap: .3rem;
-	font-size: 1.3em;
+	font-size: 1.2em;
 }
 
 #add-project {
@@ -137,7 +139,7 @@ h2 {
 section {
 	display: flex;
 	flex-grow: 1;
-	padding: 2em;
+	padding: 2rem clamp(0px, .5rem + .2vw, 2rem);
 	width: 100%;
 	gap: 5px;
 	flex-direction: column;
@@ -146,12 +148,12 @@ section {
 /* notes-section */
 
 .note-line {
-	width: 100%;
-	height: 40px;
+	min-height: 40px;
 	padding: 10px;
 	border-radius: 5px;
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	gap: 10px;
 }
 
@@ -203,7 +205,6 @@ input[type='date'] {
 
 .section-add-note>button {
 	font-size: 15px;
-	width: fit-content;
 	background: var(--body);
 	height: 40px;
 	padding: 10px;
@@ -321,4 +322,10 @@ footer>a>img {
 
 .block {
 	display: block;
+}
+
+@media screen and (max-width: 400px) {
+	nav span {
+		display: none;
+	}
 }
